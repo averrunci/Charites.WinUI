@@ -1,0 +1,36 @@
+﻿<!--
+Copyright (C) 2022 Fievus
+
+This software may be modified and distributed under the terms
+of the MIT license.  See the LICENSE file for details.
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="HeaderGridStyle" TargetType="Panel">
+        <Setter Property="Height" Value="80"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundAccentBrush}" />
+    </Style>
+
+    <Style x:Key="SimpleLoginDemoTitleTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="FooterGridStyle" TargetType="Panel">
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundAccentBrush}" />
+    </Style>
+
+    <Style x:Key="CopyrightTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+</ResourceDictionary>

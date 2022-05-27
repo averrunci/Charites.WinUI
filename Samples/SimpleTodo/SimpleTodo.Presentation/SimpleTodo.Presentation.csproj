@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>Charites.Windows.Samples.SimpleTodo.Presentation</RootNamespace>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>averrunci</Authors>
+    <Description>The presentation library for the sample app using Charites.WinUI.</Description>
+    <Copyright>Copyright (C) 2022 Fievus</Copyright>
+    <PackageProjectUrl>https://github.com/averrunci/Charites.WinUI</PackageProjectUrl>
+    <PackageTags>winui mvc charites</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\Styles\SimpleTodoContentStyle.xaml" />
+    <None Remove="Resources\Styles\SimpleTodoHostStyle.xaml" />
+    <None Remove="Resources\Styles\TodoItemStyle.xaml" />
+    <None Remove="Resources\Templates\SimpleTodoContentTemplate.xaml" />
+    <None Remove="Resources\Templates\TodoItemTemplate.xaml" />
+    <None Remove="Strings\en-US\Resources.resw" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.3" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Source\Charites.WinUI\Charites.WinUI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Resources\Styles\SimpleTodoContentStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Resources\Templates\SimpleTodoContentTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Resources\Styles\TodoItemStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Resources\Templates\TodoItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Resources\Styles\SimpleTodoHostStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,21 @@
+﻿<!--
+Copyright (C) 2022 Fievus
+
+This software may be modified and distributed under the terms
+of the MIT license.  See the LICENSE file for details.
+-->
+<Application x:Class="Charites.Windows.Samples.SimpleTodo.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <XamlControlsResources xmlns="using:Charites.Windows.Mvc" />
+                <ResourceDictionary Source="ms-appx:///SimpleTodo.Presentation/Resources/Resources.xaml"/>
+                <!-- Other merged dictionaries here -->
+            </ResourceDictionary.MergedDictionaries>
+            <!-- Other app resources here -->
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

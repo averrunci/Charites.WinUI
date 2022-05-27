@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Charites.WinUI.Spec (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Charites.WinUI.Spec (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

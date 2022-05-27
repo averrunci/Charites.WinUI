@@ -1,0 +1,39 @@
+﻿<!--
+Copyright (C) 2022 Fievus
+
+This software may be modified and distributed under the terms
+of the MIT license.  See the LICENSE file for details.
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:u="using:Charites.Windows.Mvc">
+    <DataTemplate x:Key="SimpleTodoHost">
+        <Grid u:WinUIController.IsEnabled="true">
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="ms-appx:///SimpleTodo.Presentation/Resources/Styles/SimpleTodoHostStyle.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Name="HeaderGrid" Grid.Row="0" Style="{StaticResource HeaderGridStyle}">
+                <TextBlock x:Uid="/SimpleTodo.Presentation/Resources/SimpleTodoTitle"
+                           Style="{StaticResource SimpleTodoTitleTextBlockStyle}"/>
+            </Grid>
+
+            <ContentControl Grid.Row="1" Content="{Binding Content}"/>
+
+            <Grid Grid.Row="2" Style="{StaticResource FooterGridStyle}">
+                <TextBlock x:Uid="/SimpleTodo.Presentation/Resources/Copyright"
+                           Style="{StaticResource CopyrightTextBlockStyle}"/>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

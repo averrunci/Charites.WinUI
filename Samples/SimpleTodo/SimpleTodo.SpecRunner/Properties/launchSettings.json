@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SimpleTodo.SpecRunner (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SimpleTodo.SpecRunner (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

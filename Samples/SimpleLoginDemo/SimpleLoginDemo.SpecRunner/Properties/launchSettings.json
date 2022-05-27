@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SimpleLoginDemo.SpecRunner (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SimpleLoginDemo.SpecRunner (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

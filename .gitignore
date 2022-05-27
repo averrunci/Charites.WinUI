@@ -1,0 +1,9 @@
+.vs/
+Binary/
+bin/
+obj/
+packages/
+*.user
+*.nuget.props
+*.nuget.targets
+*.nupkg
