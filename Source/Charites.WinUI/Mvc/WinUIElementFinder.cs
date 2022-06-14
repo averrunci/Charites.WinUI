@@ -6,9 +6,8 @@ using Microsoft.UI.Xaml;
 
 namespace Charites.Windows.Mvc;
 
-internal sealed class WinUIElementInjector : ElementInjector<FrameworkElement>, IWinUIElementInjector
+internal sealed class WinUIElementFinder : IWinUIElementFinder
 {
-    public WinUIElementInjector(IElementFinder<FrameworkElement> elementFinder) : base(elementFinder)
-    {
-    }
+    public object? FindElement(FrameworkElement? rootElement, string elementName)
+        => rootElement.FindElement<object>(elementName);
 }

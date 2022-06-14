@@ -177,7 +177,7 @@ internal class TestWinUIControllers
         }
     }
 
-    public class DependencyParametersController
+    public class AttributedParametersController
     {
         [DataContext]
         public object? DataContext { get; set; }
@@ -186,25 +186,25 @@ internal class TestWinUIControllers
         public FrameworkElement? Element { get; set; }
 
         [EventHandler(ElementName = "Element", Event = nameof(UIElement.KeyDown))]
-        protected void OnElementKeyDown(KeyRoutedEventArgs e, [FromDI] IDependency1 dependency1, [FromDI] IDependency2 dependency2, [FromDI] IDependency3 dependency3)
+        protected void OnElementKeyDown(KeyRoutedEventArgs e, [FromDI] IDependency1 dependency1, [FromDI] IDependency2 dependency2, [FromDI] IDependency3 dependency3, [FromElement] TestElement testElement, [FromDataContext] TestDataContexts.TestDataContext dataContext)
         {
             KeyDownAssertionHandler?.Invoke(e.Key());
-            DependencyArgumentsHandler?.Invoke(dependency1, dependency2, dependency3);
+            AttributedArgumentsHandler?.Invoke(dependency1, dependency2, dependency3, testElement, dataContext);
         }
 
         [EventHandler(ElementName = "Element", Event = nameof(UIElement.PointerPressed))]
-        protected void OnElementPointerPressed(PointerRoutedEventArgs e, [FromDI] IDependency1 dependency1, [FromDI] IDependency2 dependency2, [FromDI] IDependency3 dependency3)
+        protected void OnElementPointerPressed(PointerRoutedEventArgs e, [FromDI] IDependency1 dependency1, [FromDI] IDependency2 dependency2, [FromDI] IDependency3 dependency3, [FromElement] TestElement testElement, [FromDataContext] TestDataContexts.TestDataContext dataContext)
         {
             PointerPressedHandler?.Invoke(e.Pointer().PointerDeviceType());
-            DependencyArgumentsHandler?.Invoke(dependency1, dependency2, dependency3);
+            AttributedArgumentsHandler?.Invoke(dependency1, dependency2, dependency3, testElement, dataContext);
         }
 
         public Action<VirtualKey>? KeyDownAssertionHandler { get; set; }
         public Action<PointerDeviceType>? PointerPressedHandler { get; set; }
-        public Action<IDependency1, IDependency2, IDependency3>? DependencyArgumentsHandler { get; set; }
+        public Action<IDependency1, IDependency2, IDependency3, TestElement, TestDataContexts.TestDataContext>? AttributedArgumentsHandler { get; set; }
     }
 
-    public class DependencyParametersControllerAsync
+    public class AttributedParametersControllerAsync
     {
         [DataContext]
         public object? DataContext { get; set; }
@@ -213,29 +213,29 @@ internal class TestWinUIControllers
         public FrameworkElement? Element { get; set; }
 
         [EventHandler(ElementName = "Element", Event = nameof(UIElement.KeyDown))]
-        private async Task OnElementKeyDownAsync(KeyRoutedEventArgs e, [FromDI] IDependency1 dependency1, [FromDI] IDependency2 dependency2, [FromDI] IDependency3 dependency3)
+        private async Task OnElementKeyDownAsync(KeyRoutedEventArgs e, [FromDI] IDependency1 dependency1, [FromDI] IDependency2 dependency2, [FromDI] IDependency3 dependency3, [FromElement(Name = "TestElement")] TestElement testElement, [FromDataContext] TestDataContexts.TestDataContext dataContext)
         {
             await Task.Run(() =>
             {
                 KeyDownAssertionHandler?.Invoke(e.Key());
-                DependencyArgumentsHandler?.Invoke(dependency1, dependency2, dependency3);
+                AttributedArgumentsHandler?.Invoke(dependency1, dependency2, dependency3, testElement, dataContext);
             });
         }
 
 
         [EventHandler(ElementName = "Element", Event = nameof(UIElement.PointerPressed))]
-        protected async Task OnElementPointerPressedAsync(PointerRoutedEventArgs e, [FromDI] IDependency1 dependency1, [FromDI] IDependency2 dependency2, [FromDI] IDependency3 dependency3)
+        protected async Task OnElementPointerPressedAsync(PointerRoutedEventArgs e, [FromDI] IDependency1 dependency1, [FromDI] IDependency2 dependency2, [FromDI] IDependency3 dependency3, [FromElement(Name = "TestElement")] TestElement testElement, [FromDataContext] TestDataContexts.TestDataContext dataContext)
         {
             await Task.Run(() =>
             {
                 PointerPressedHandler?.Invoke(e.Pointer().PointerDeviceType());
-                DependencyArgumentsHandler?.Invoke(dependency1, dependency2, dependency3);
+                AttributedArgumentsHandler?.Invoke(dependency1, dependency2, dependency3, testElement, dataContext);
             });
         }
 
         public Action<VirtualKey>? KeyDownAssertionHandler { get; set; }
         public Action<PointerDeviceType>? PointerPressedHandler { get; set; }
-        public Action<IDependency1, IDependency2, IDependency3>? DependencyArgumentsHandler { get; set; }
+        public Action<IDependency1, IDependency2, IDependency3, TestElement, TestDataContexts.TestDataContext>? AttributedArgumentsHandler { get; set; }
     }
 
     public interface IDependency1 { }

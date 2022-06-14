@@ -6,9 +6,9 @@ using Microsoft.UI.Xaml;
 
 namespace Charites.Windows.Mvc;
 
-internal sealed class WinUIElementInjector : ElementInjector<FrameworkElement>, IWinUIElementInjector
+/// <summary>
+/// Provides the function to find a key of an element.
+/// </summary>
+public interface IWinUIElementFinder : IElementFinder<FrameworkElement>
 {
-    public WinUIElementInjector(IElementFinder<FrameworkElement> elementFinder) : base(elementFinder)
-    {
-    }
 }

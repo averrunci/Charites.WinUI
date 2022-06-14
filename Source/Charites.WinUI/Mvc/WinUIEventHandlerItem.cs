@@ -35,7 +35,8 @@ public sealed class WinUIEventHandlerItem : EventHandlerItem<FrameworkElement>
     /// handler with the default condition that it will not be invoked if the event
     /// is already marked handled.
     /// </param>
-    public WinUIEventHandlerItem(string elementName, FrameworkElement? element, string eventName, RoutedEvent? routedEvent, EventInfo? eventInfo, Delegate? handler, bool handledEventsToo) : base(elementName, element, eventName, handler, handledEventsToo)
+    /// <param name="parameterResolver">The resolver to resolve parameters.</param>
+    public WinUIEventHandlerItem(string elementName, FrameworkElement? element, string eventName, RoutedEvent? routedEvent, EventInfo? eventInfo, Delegate? handler, bool handledEventsToo, IEnumerable<IEventHandlerParameterResolver> parameterResolver) : base(elementName, element, eventName, handler, handledEventsToo, parameterResolver)
     {
         this.routedEvent = routedEvent;
         this.eventInfo = eventInfo;
@@ -87,15 +88,5 @@ public sealed class WinUIEventHandlerItem : EventHandlerItem<FrameworkElement>
         }
 
         isEventHandlerAdded = false;
-    }
-
-    /// <summary>
-    /// Creates the resolver to resolve dependencies of parameters.
-    /// </summary>
-    /// <param name="dependencyResolver">The resolver to resolve dependencies of parameters.</param>
-    /// <returns>The resolver to resolve dependencies of parameters.</returns>
-    protected override IParameterDependencyResolver CreateParameterDependencyResolver(IDictionary<Type, Func<object?>>? dependencyResolver)
-    {
-        return dependencyResolver is null ? new WinUIParameterDependencyResolver() : new WinUIParameterDependencyResolver(dependencyResolver);
     }
 }

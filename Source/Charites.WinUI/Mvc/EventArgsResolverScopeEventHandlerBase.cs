@@ -77,9 +77,45 @@ public sealed class EventArgsResolverScopeEventHandlerBase
         /// <typeparam name="TParameter">The type of the parameter to inject to.</typeparam>
         /// <param name="resolver">The function to resolve the parameter of the specified type.</param>
         /// <returns>The instance of the <see cref="Executor" /> class.</returns>
+        [Obsolete("This method is obsolete. Use the ResolveFromDI<TParameter>(Func<object?>) method instead.")]
         public Executor Resolve<TParameter>(Func<object?> resolver)
         {
             executor.Resolve<TParameter>(resolver);
+            return this;
+        }
+
+        /// <summary>
+        /// Resolves a parameter specified by the <see cref="FromDIAttribute"/> attribute using the specified resolver.
+        /// </summary>
+        /// <typeparam name="TParameter">The type of the parameter.</typeparam>
+        /// <param name="resolver">The function to resolve the parameter of the specified type.</param>
+        /// <returns>The instance of the <see cref="Executor"/>.</returns>
+        public Executor ResolveFromDI<TParameter>(Func<object?> resolver)
+        {
+            executor.ResolveFromDI<TParameter>(resolver);
+            return this;
+        }
+
+        /// <summary>
+        /// Resolves a parameter specified by the <see cref="FromElementAttribute"/> attribute using the specified name and element.
+        /// </summary>
+        /// <param name="name">The name of the element.</param>
+        /// <param name="element">The element to inject to the parameter.</param>
+        /// <returns>The instance of the <see cref="Executor"/>.</returns>
+        public Executor ResolveFromElement(string name, FrameworkElement? element)
+        {
+            executor.ResolveFromElement(name, element);
+            return this;
+        }
+
+        /// <summary>
+        /// Resolves a parameter specified by the <see cref="FromDataContextAttribute"/> attribute using the specified data context.
+        /// </summary>
+        /// <param name="dataContext">The data context to inject to the parameter.</param>
+        /// <returns>The instance of the <see cref="Executor"/>.</returns>
+        public Executor ResolveFromDataContext(object? dataContext)
+        {
+            executor.ResolveFromDataContext(dataContext);
             return this;
         }
 

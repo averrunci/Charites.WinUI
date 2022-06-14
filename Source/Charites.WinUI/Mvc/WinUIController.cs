@@ -39,6 +39,20 @@ public class WinUIController
     public static IDataContextInjector DataContextInjector { get; set; } = new DataContextInjector();
 
     /// <summary>
+    /// Gets or sets the finder to find an element in a view.
+    /// </summary>
+    public static IWinUIElementFinder ElementFinder
+    {
+        get => elementFinder;
+        set
+        {
+            elementFinder = value;
+            EnsureElementInjector();
+        }
+    }
+    private static IWinUIElementFinder elementFinder = new WinUIElementFinder();
+
+    /// <summary>
     /// Gets or sets the finder to find a key of an element.
     /// </summary>
     public static IWinUIElementKeyFinder ElementKeyFinder
@@ -55,7 +69,7 @@ public class WinUIController
     /// <summary>
     /// Gets or sets the injector to inject elements in a view to a controller.
     /// </summary>
-    public static IWinUIElementInjector ElementInjector { get; set; } = new WinUIElementInjector();
+    public static IWinUIElementInjector ElementInjector { get; set; } = new WinUIElementInjector(ElementFinder);
 
     /// <summary>
     /// Gets or sets the finder to find a type of a controller that controls a view.
@@ -209,6 +223,11 @@ public class WinUIController
     private static void EnsureControllerTypeFinder()
     {
         ControllerTypeFinder = new WinUIControllerTypeFinder(ElementKeyFinder, DataContextFinder);
+    }
+
+    private static void EnsureElementInjector()
+    {
+        ElementInjector = new WinUIElementInjector(ElementFinder);
     }
 
     /// <summary>

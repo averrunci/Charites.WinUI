@@ -15,6 +15,13 @@ internal sealed class WinUIEventHandlerExtension : EventHandlerExtension<Framewo
         "ShadowEventHandlerBases", typeof(IDictionary<object, EventHandlerBase<FrameworkElement, WinUIEventHandlerItem>>), typeof(WinUIEventHandlerExtension), new PropertyMetadata(null)
     );
 
+    public WinUIEventHandlerExtension()
+    {
+        Add<WinUIEventHandlerParameterFromDIResolver>();
+        Add<WinUIEventHandlerParameterFromElementResolver>();
+        Add<WinUIEventHandlerParameterFromDataContextResolver>();
+    }
+
     protected override IDictionary<object, EventHandlerBase<FrameworkElement, WinUIEventHandlerItem>> EnsureEventHandlerBases(FrameworkElement? element)
     {
         if (element is null) return new Dictionary<object, EventHandlerBase<FrameworkElement, WinUIEventHandlerItem>>();
@@ -34,11 +41,13 @@ internal sealed class WinUIEventHandlerExtension : EventHandlerExtension<Framewo
         eventHandlers.Add(new WinUIEventHandlerItem(
             eventHandlerAttribute.ElementName, targetElement,
             eventHandlerAttribute.Event, routedEvent, eventInfo,
-            handlerCreator(eventInfo?.EventHandlerType), eventHandlerAttribute.HandledEventsToo
+            handlerCreator(eventInfo?.EventHandlerType), eventHandlerAttribute.HandledEventsToo,
+            CreateParameterResolver(element)
         ));
     }
 
-    protected override EventHandlerAction CreateEventHandlerAction(MethodInfo method, object? target) => new WinUIEventHandlerAction(method, target);
+    protected override EventHandlerAction CreateEventHandlerAction(MethodInfo method, object? target, FrameworkElement? element)
+        => new WinUIEventHandlerAction(method, target, CreateParameterDependencyResolver(CreateParameterResolver(element)));
 
     protected override void OnEventHandlerAdded(EventHandlerBase<FrameworkElement, WinUIEventHandlerItem> eventHandlers, FrameworkElement element)
     {

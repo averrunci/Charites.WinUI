@@ -8,14 +8,9 @@ namespace Charites.Windows.Mvc;
 
 internal sealed class WinUIEventHandlerAction : EventHandlerAction
 {
-    public WinUIEventHandlerAction(MethodInfo method, object? target) : base(method, target)
+    public WinUIEventHandlerAction(MethodInfo method, object? target, IParameterDependencyResolver parameterDependencyResolver) : base(method, target, parameterDependencyResolver)
     {
     }
 
     protected override bool HandleUnhandledException(Exception exc) => WinUIController.HandleUnhandledException(exc);
-
-    protected override IParameterDependencyResolver CreateParameterDependencyResolver(IDictionary<Type, Func<object?>>? dependencyResolver)
-    {
-        return dependencyResolver is null ? new WinUIParameterDependencyResolver() : new WinUIParameterDependencyResolver(dependencyResolver);
-    }
 }
