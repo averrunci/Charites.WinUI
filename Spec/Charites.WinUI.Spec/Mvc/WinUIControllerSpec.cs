@@ -6,21 +6,14 @@ using Carna;
 
 namespace Charites.Windows.Mvc;
 
-[Specification("WinUIController Spec")]
+[Specification(
+    "WinUIController Spec",
+    typeof(WinUIControllerSpec_EventHandlerDataContextElementInjection),
+    typeof(WinUIControllerSpec_AttachingAndDetachingController),
+    typeof(WinUIControllerSpec_ExecuteHandler),
+    typeof(WinUIControllerSpec_WinUIControllerExtension),
+    typeof(WinUIControllerSpec_UnhandledException)
+)]
 class WinUIControllerSpec
 {
-    [Context]
-    WinUIControllerSpec_EventHandlerDataContextElementInjection EventHandlerDataContextElementInjection => default!;
-
-    [Context]
-    WinUIControllerSpec_AttachingAndDetachingController AttachingAndDetachingController => default!;
-
-    [Context]
-    WinUIControllerSpec_ExecuteHandler ExecuteHandler => default!;
-
-    [Context]
-    WinUIControllerSpec_WinUIControllerExtension WinUIControllerExtension => default!;
-
-    [Context]
-    WinUIControllerSpec_UnhandledException UnhandledException => default!;
 }

@@ -6,15 +6,13 @@ using Carna;
 
 namespace Charites.Windows.Mvc;
 
-[Context("Attaching and detaching a controller")]
+[Context(
+    "Attaching and detaching a controller",
+    typeof(WinUIControllerSpec_AttachingAndDetachingController_IsEnabled),
+    typeof(WinUIControllerSpec_AttachingAndDetachingController_IsEnabledBeforeDataContextIsSet)
+)]
 class WinUIControllerSpec_AttachingAndDetachingController : DispatcherContext
 {
-    [Context]
-    WinUIControllerSpec_AttachingAndDetachingController_IsEnabled IsEnabled => default!;
-
-    [Context]
-    WinUIControllerSpec_AttachingAndDetachingController_IsEnabledBeforeDataContextIsSet IsEnabledBeforeDataContextIsSet => default!;
-
     TestElement Element { get; set; } = default!;
 
     TestWinUIControllers.TestWinUIController Controller { get; set; } = default!;
