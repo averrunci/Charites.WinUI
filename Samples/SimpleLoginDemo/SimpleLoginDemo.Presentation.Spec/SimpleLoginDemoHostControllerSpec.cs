@@ -35,7 +35,7 @@ class SimpleLoginDemoHostControllerSpec : FixtureSteppable
             When("the SimpleLoginDemoHost is loaded", () =>
                 WinUIController.EventHandlersOf(Controller)
                     .GetBy(null)
-                    .Resolve<ISimpleLoginDemoWindowProvider>(() => windowProvider)
+                    .ResolveFromDI<ISimpleLoginDemoWindowProvider>(() => windowProvider)
                     .Raise(nameof(FrameworkElement.Loaded))
             );
             Then("the content should be navigated to the LoginContent", () => { Navigator.Received(1).NavigateTo(Arg.Any<LoginContent>()); });

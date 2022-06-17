@@ -10,13 +10,8 @@ namespace Charites.Windows.Samples.SimpleLoginDemo.Presentation.Login;
 [View(Key = nameof(LoginContent))]
 public  class LoginContentController
 {
-    private void SetDataContext(LoginContent? content) => this.content = content;
-    private LoginContent? content;
-
-    private async Task LoginButton_Click([FromDI] ILoginCommand command, [FromDI] IContentNavigator navigator)
+    private async Task LoginButton_Click([FromDataContext] LoginContent content, [FromDI] ILoginCommand command, [FromDI] IContentNavigator navigator)
     {
-        if (content is null) return;
-
         content.Message.Value = string.Empty;
 
         if (!content.IsValid.Value) return;

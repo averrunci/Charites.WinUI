@@ -22,7 +22,7 @@ class HomeContentControllerSpec : FixtureSteppable
         When("to click the Logout button", () =>
             WinUIController.EventHandlersOf(Controller)
                 .GetBy("LogoutButton")
-                .Resolve<IContentNavigator>(() => Navigator)
+                .ResolveFromDI<IContentNavigator>(() => Navigator)
                 .Raise(nameof(ButtonBase.Click))
         );
         Then("the content should be navigated to the LoginContent", () =>

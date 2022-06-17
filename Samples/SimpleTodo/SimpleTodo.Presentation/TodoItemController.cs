@@ -14,58 +14,46 @@ namespace Charites.Windows.Samples.SimpleTodo.Presentation;
 [View(Key = nameof(TodoItem))]
 public class TodoItemController
 {
-    private void SetDataContext(TodoItem? todoItem) => this.todoItem = todoItem;
-    private TodoItem? todoItem;
-
-    [Element]
-    private void SetRoot(UserControl? root) => this.root = root;
-    private UserControl? root;
-
-    [Element]
-    private void SetTodoContentTextBox(TextBox? todoContentTextBox) => this.todoContentTextBox = todoContentTextBox;
-    private TextBox? todoContentTextBox;
-
-    private void TodoItemContainer_PointerEntered()
+    private void TodoItemContainer_PointerEntered([FromElement(Name = "Root")] Control root)
     {
         VisualStateManager.GoToState(root, "PointerOver", false);
     }
 
-    private void TodoItemContainer_PointerExited()
+    private void TodoItemContainer_PointerExited([FromElement(Name = "Root")] Control root)
     {
         VisualStateManager.GoToState(root, "Normal", false);
     }
 
-    private void TodoItemContainer_DoubleTapped()
+    private void TodoItemContainer_DoubleTapped([FromDataContext] TodoItem todoItem, [FromElement(Name = "TodoContentTextBox")] TextBox todoContentTextBox)
     {
-        todoItem?.StartEdit();
+        todoItem.StartEdit();
 
-        todoContentTextBox?.Focus(FocusState.Pointer);
-        todoContentTextBox?.SelectAll();
+        todoContentTextBox.Focus(FocusState.Pointer);
+        todoContentTextBox.SelectAll();
     }
 
-    private void TodoContentTextBox_KeyDown(KeyRoutedEventArgs e)
+    private void TodoContentTextBox_KeyDown(KeyRoutedEventArgs e, [FromDataContext] TodoItem todoItem)
     {
         switch (e.Key())
         {
             case VirtualKey.Enter:
-                todoItem?.CompleteEdit();
+                todoItem.CompleteEdit();
                 break;
             case VirtualKey.Escape:
-                todoItem?.CancelEdit();
+                todoItem.CancelEdit();
                 break;
         }
     }
 
-    private void TodoContentTextBox_LostFocus()
+    private void TodoContentTextBox_LostFocus([FromDataContext] TodoItem todoItem)
     {
-        if (todoItem is null) return;
         if (!todoItem.Editing.Value) return;
 
         todoItem.CompleteEdit();
     }
 
-    private void DeleteButton_Click()
+    private void DeleteButton_Click([FromDataContext] TodoItem todoItem)
     {
-        todoItem?.Remove();
+        todoItem.Remove();
     }
 }

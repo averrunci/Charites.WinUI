@@ -31,7 +31,6 @@ class TodoItemControllerSpec : FixtureSteppable
     {
         TodoItem = new TodoItem(InitialContent);
         TodoItem.RemoveRequested += RemovedRequestedHandler;
-        WinUIController.SetDataContext(TodoItem, Controller);
     }
 
     [Example("Changes the visual state when the pointer is over an element")]
@@ -39,6 +38,7 @@ class TodoItemControllerSpec : FixtureSteppable
     {
         await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() =>
         {
+            var root = new UserControl { Name = "Root" };
             Grid element = default!;
             Given("an element with a visual state", () =>
             {
@@ -50,12 +50,13 @@ class TodoItemControllerSpec : FixtureSteppable
     <VisualState x:Name=""PointerOver"" />
 </VisualStateGroup>
 ") as VisualStateGroup);
+                root.Content = element;
             });
-            WinUIController.SetElement(new UserControl { Name = "Root", Content = element }, Controller);
             When("a pointer enters into the element", () =>
                 WinUIController.EventHandlersOf(Controller)
                     .GetBy(element.Name)
                     .From(element)
+                    .ResolveFromElement(root.Name, root)
                     .Raise(nameof(UIElement.PointerEntered))
             );
             Then("the current state of the element should be 'PointerOver'", () =>
@@ -65,6 +66,7 @@ class TodoItemControllerSpec : FixtureSteppable
                 WinUIController.EventHandlersOf(Controller)
                     .GetBy(element.Name)
                     .From(element)
+                    .ResolveFromElement(root.Name, root)
                     .Raise(nameof(UIElement.PointerExited))
             );
             Then("the current state of the element should be 'Normal'", () =>
@@ -74,73 +76,96 @@ class TodoItemControllerSpec : FixtureSteppable
     }
 
     [Example("Switches a content to an edit mode when the element is double tapped")]
-    void Ex02()
+    async Task Ex02()
     {
-        When("the element is double tapped", () =>
-            WinUIController.EventHandlersOf(Controller)
-                .GetBy("TodoItemContainer")
-                .Raise(nameof(UIElement.DoubleTapped))
-        );
-        Then("the to-do item should be editing", () => TodoItem.Editing.Value);
-        Then("the edit content of the to-do item should be the initial content", () => TodoItem.EditContent.Value == InitialContent);
+        await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() =>
+        {
+            When("the element is double tapped", () =>
+                WinUIController.EventHandlersOf(Controller)
+                    .GetBy("TodoItemContainer")
+                    .ResolveFromDataContext(TodoItem)
+                    .ResolveFromElement("TodoContentTextBox", new TextBox())
+                    .Raise(nameof(UIElement.DoubleTapped))
+            );
+            Then("the to-do item should be editing", () => TodoItem.Editing.Value);
+            Then("the edit content of the to-do item should be the initial content", () => TodoItem.EditContent.Value == InitialContent);
+        });
     }
 
     [Example("Completes an edit when the Enter key is pressed")]
-    void Ex03()
+    async Task Ex03()
     {
-        When("the element is double tapped", () =>
-            WinUIController.EventHandlersOf(Controller)
-                .GetBy("TodoItemContainer")
-                .Raise(nameof(UIElement.DoubleTapped))
-        );
-        When("the content is modified", () => TodoItem.EditContent.Value = ModifiedContent);
-        When("the Enter key is pressed", () =>
-            WinUIController.Using(Substitute.For<IKeyRoutedEventArgsResolver>(), typeof(KeyRoutedEventArgsWrapper))
-                .Apply(resolver => resolver.Key(Arg.Any<KeyRoutedEventArgs>()).Returns(VirtualKey.Enter))
-                .EventHandlersOf(Controller)
-                .GetBy("TodoContentTextBox")
-                .Raise(nameof(UIElement.KeyDown))
-        );
-        Then("the to-do item should not be editing", () => !TodoItem.Editing.Value);
-        Then("the content of the to-do item should be the modified content", () => TodoItem.Content.Value == ModifiedContent);
+        await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() =>
+        {
+            When("the element is double tapped", () =>
+                WinUIController.EventHandlersOf(Controller)
+                    .GetBy("TodoItemContainer")
+                    .ResolveFromDataContext(TodoItem)
+                    .ResolveFromElement("TodoContentTextBox", new TextBox())
+                    .Raise(nameof(UIElement.DoubleTapped))
+            );
+            When("the content is modified", () => TodoItem.EditContent.Value = ModifiedContent);
+            When("the Enter key is pressed", () =>
+                WinUIController.Using(Substitute.For<IKeyRoutedEventArgsResolver>(), typeof(KeyRoutedEventArgsWrapper))
+                    .Apply(resolver => resolver.Key(Arg.Any<KeyRoutedEventArgs>()).Returns(VirtualKey.Enter))
+                    .EventHandlersOf(Controller)
+                    .GetBy("TodoContentTextBox")
+                    .ResolveFromDataContext(TodoItem)
+                    .Raise(nameof(UIElement.KeyDown))
+            );
+            Then("the to-do item should not be editing", () => !TodoItem.Editing.Value);
+            Then("the content of the to-do item should be the modified content", () => TodoItem.Content.Value == ModifiedContent);
+        });
     }
 
     [Example("Completes an edit when the focus is lost")]
-    void Ex04()
+    async Task Ex04()
     {
-        When("the element is double tapped", () =>
-            WinUIController.EventHandlersOf(Controller)
-                .GetBy("TodoItemContainer")
-                .Raise(nameof(UIElement.DoubleTapped))
-        );
-        When("the content is modified", () => TodoItem.EditContent.Value = ModifiedContent);
-        When("the focus is lost", () =>
-            WinUIController.EventHandlersOf(Controller)
-                .GetBy("TodoContentTextBox")
-                .Raise(nameof(UIElement.LostFocus))
-        );
-        Then("the to-do item should not be editing", () => !TodoItem.Editing.Value);
-        Then("the content of the to-do item should be the modified content", () => TodoItem.Content.Value == ModifiedContent);
+        await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() =>
+        {
+            When("the element is double tapped", () =>
+                WinUIController.EventHandlersOf(Controller)
+                    .GetBy("TodoItemContainer")
+                    .ResolveFromDataContext(TodoItem)
+                    .ResolveFromElement("TodoContentTextBox", new TextBox())
+                    .Raise(nameof(UIElement.DoubleTapped))
+            );
+            When("the content is modified", () => TodoItem.EditContent.Value = ModifiedContent);
+            When("the focus is lost", () =>
+                WinUIController.EventHandlersOf(Controller)
+                    .GetBy("TodoContentTextBox")
+                    .ResolveFromDataContext(TodoItem)
+                    .Raise(nameof(UIElement.LostFocus))
+            );
+            Then("the to-do item should not be editing", () => !TodoItem.Editing.Value);
+            Then("the content of the to-do item should be the modified content", () => TodoItem.Content.Value == ModifiedContent);
+        });
     }
 
     [Example("Cancels an edit when the Esc key is pressed")]
-    void Ex05()
+    async Task Ex05()
     {
-        When("the element is double tapped", () =>
-            WinUIController.EventHandlersOf(Controller)
-                .GetBy("TodoItemContainer")
-                .Raise(nameof(UIElement.DoubleTapped))
-        );
-        When("the content is modified", () => TodoItem.EditContent.Value = ModifiedContent);
-        When("the Esc key is pressed", () =>
-            WinUIController.Using(Substitute.For<IKeyRoutedEventArgsResolver>(), typeof(KeyRoutedEventArgsWrapper))
-                .Apply(resolver => resolver.Key(Arg.Any<KeyRoutedEventArgs>()).Returns(VirtualKey.Escape))
-                .EventHandlersOf(Controller)
-                .GetBy("TodoContentTextBox")
-                .Raise(nameof(UIElement.KeyDown))
-        );
-        Then("the to-do item should not be editing", () => !TodoItem.Editing.Value);
-        Then("the content of the to-do item should be the initial content", () => TodoItem.Content.Value == InitialContent);
+        await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() =>
+        {
+            When("the element is double tapped", () =>
+                WinUIController.EventHandlersOf(Controller)
+                    .GetBy("TodoItemContainer")
+                    .ResolveFromDataContext(TodoItem)
+                    .ResolveFromElement("TodoContentTextBox", new TextBox())
+                    .Raise(nameof(UIElement.DoubleTapped))
+            );
+            When("the content is modified", () => TodoItem.EditContent.Value = ModifiedContent);
+            When("the Esc key is pressed", () =>
+                WinUIController.Using(Substitute.For<IKeyRoutedEventArgsResolver>(), typeof(KeyRoutedEventArgsWrapper))
+                    .Apply(resolver => resolver.Key(Arg.Any<KeyRoutedEventArgs>()).Returns(VirtualKey.Escape))
+                    .EventHandlersOf(Controller)
+                    .GetBy("TodoContentTextBox")
+                    .ResolveFromDataContext(TodoItem)
+                    .Raise(nameof(UIElement.KeyDown))
+            );
+            Then("the to-do item should not be editing", () => !TodoItem.Editing.Value);
+            Then("the content of the to-do item should be the initial content", () => TodoItem.Content.Value == InitialContent);
+        });
     }
 
     [Example("Removes a to-do item when the delete button is clicked")]
@@ -149,6 +174,7 @@ class TodoItemControllerSpec : FixtureSteppable
         When("the delete button is clicked", () =>
             WinUIController.EventHandlersOf(Controller)
                 .GetBy("DeleteButton")
+                .ResolveFromDataContext(TodoItem)
                 .Raise(nameof(ButtonBase.Click))
         );
         Then("it should be requested to remove the to-do item", () =>
