@@ -29,9 +29,18 @@ public static class CoreWebView2DevToolsProtocolEventReceivedEventArgsWrapper
     /// </returns>
     public static string ParameterObjectAsJson(this CoreWebView2DevToolsProtocolEventReceivedEventArgs e) => Resolver.ParameterObjectAsJson(e);
 
+    /// <summary>
+    /// Gets the sessionId of the target where the event originates from.
+    /// Empty string is returned as sessionId if the event comes from the default session for the top page.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2DevToolsProtocolEventReceivedEventArgs"/>.</param>
+    /// <returns>The sessionId of the target where the event originates from.</returns>
+    public static string SessionId(this CoreWebView2DevToolsProtocolEventReceivedEventArgs e) => Resolver.SessionId(e);
+
     private sealed class DefaultCoreWebView2DevToolsProtocolEventReceivedEventArgsResolver : ICoreWebView2DevToolsProtocolEventReceivedEventArgsResolver
     {
         string ICoreWebView2DevToolsProtocolEventReceivedEventArgsResolver.ParameterObjectAsJson(CoreWebView2DevToolsProtocolEventReceivedEventArgs e) => e.ParameterObjectAsJson;
+        string ICoreWebView2DevToolsProtocolEventReceivedEventArgsResolver.SessionId(CoreWebView2DevToolsProtocolEventReceivedEventArgs e) => e.SessionId;
     }
 }
 
@@ -50,4 +59,12 @@ public interface ICoreWebView2DevToolsProtocolEventReceivedEventArgsResolver
     /// event represented as a JSON string.
     /// </returns>
     string ParameterObjectAsJson(CoreWebView2DevToolsProtocolEventReceivedEventArgs e);
+
+    /// <summary>
+    /// Gets the sessionId of the target where the event originates from.
+    /// Empty string is returned as sessionId if the event comes from the default session for the top page.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2DevToolsProtocolEventReceivedEventArgs"/>.</param>
+    /// <returns>The sessionId of the target where the event originates from.</returns>
+    string SessionId(CoreWebView2DevToolsProtocolEventReceivedEventArgs e);
 }

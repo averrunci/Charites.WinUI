@@ -19,6 +19,20 @@ public static class CoreWebView2NavigationStartingEventArgsWrapper
     public static ICoreWebView2NavigationStartingEventArgsResolver Resolver { get; set; } = new DefaultCoreWebView2NavigationStartingEventArgsResolver();
 
     /// <summary>
+    /// Gets the additional allowed frame ancestors set by the host app.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2NavigationStartingEventArgs"/>.</param>
+    /// <returns>The additional allowed frame ancestors set by the host app.</returns>
+    public static string AdditionalAllowedFrameAncestors(this CoreWebView2NavigationStartingEventArgs e) => Resolver.AdditionalAllowedFrameAncestors(e);
+
+    /// <summary>
+    /// Sets the additional allowed frame ancestors set by the host app.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2NavigationStartingEventArgs"/>.</param>
+    /// <param name="additionalAllowedFrameAncestors">The additional allowed frame ancestors set by the host app.</param>
+    public static void AdditionalAllowedFrameAncestors(this CoreWebView2NavigationStartingEventArgs e, string additionalAllowedFrameAncestors) => Resolver.AdditionalAllowedFrameAncestors(e, additionalAllowedFrameAncestors);
+
+    /// <summary>
     /// Gets a value that indicates whether to cancel the navigation.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2NavigationStartingEventArgs"/>.</param>
@@ -71,6 +85,8 @@ public static class CoreWebView2NavigationStartingEventArgsWrapper
 
     private sealed class DefaultCoreWebView2NavigationStartingEventArgsResolver : ICoreWebView2NavigationStartingEventArgsResolver
     {
+        string ICoreWebView2NavigationStartingEventArgsResolver.AdditionalAllowedFrameAncestors(CoreWebView2NavigationStartingEventArgs e) => e.AdditionalAllowedFrameAncestors;
+        void ICoreWebView2NavigationStartingEventArgsResolver.AdditionalAllowedFrameAncestors(CoreWebView2NavigationStartingEventArgs e, string additionalAllowedFrameAncestors) => e.AdditionalAllowedFrameAncestors = additionalAllowedFrameAncestors;
         bool ICoreWebView2NavigationStartingEventArgsResolver.Cancel(CoreWebView2NavigationStartingEventArgs e) => e.Cancel;
         void ICoreWebView2NavigationStartingEventArgsResolver.Cancel(CoreWebView2NavigationStartingEventArgs e, bool cancel) => e.Cancel = cancel;
         bool ICoreWebView2NavigationStartingEventArgsResolver.IsRedirected(CoreWebView2NavigationStartingEventArgs e) => e.IsRedirected;
@@ -86,6 +102,20 @@ public static class CoreWebView2NavigationStartingEventArgsWrapper
 /// </summary>
 public interface ICoreWebView2NavigationStartingEventArgsResolver
 {
+    /// <summary>
+    /// Gets the additional allowed frame ancestors set by the host app.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2NavigationStartingEventArgs"/>.</param>
+    /// <returns>The additional allowed frame ancestors set by the host app.</returns>
+    string AdditionalAllowedFrameAncestors(CoreWebView2NavigationStartingEventArgs e);
+
+    /// <summary>
+    /// Sets the additional allowed frame ancestors set by the host app.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2NavigationStartingEventArgs"/>.</param>
+    /// <param name="additionalAllowedFrameAncestors">The additional allowed frame ancestors set by the host app.</param>
+    void AdditionalAllowedFrameAncestors(CoreWebView2NavigationStartingEventArgs e, string additionalAllowedFrameAncestors);
+
     /// <summary>
     /// Gets a value that indicates whether to cancel the navigation.
     /// </summary>

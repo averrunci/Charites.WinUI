@@ -20,6 +20,20 @@ public static class CoreWebView2PermissionRequestedEventArgsWrapper
     public static ICoreWebView2PermissionRequestedEventArgsResolver Resolver { get; set; } = new DefaultCoreWebView2PermissionRequestedEventArgsResolver();
 
     /// <summary>
+    /// Gets a value that indicates whether the request is handled.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2PermissionRequestedEventArgs"/>.</param>
+    /// <returns><c>true</c> if the request is handled; otherwise, <c>false</c>.</returns>
+    public static bool Handled(this CoreWebView2PermissionRequestedEventArgs e) => Resolver.Handled(e);
+
+    /// <summary>
+    /// Sets a value that indicates whether the request is handled.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2PermissionRequestedEventArgs"/>.</param>
+    /// <param name="handled"><c>true</c> if the request is handled; otherwise, <c>false</c>.</param>
+    public static void Handled(this CoreWebView2PermissionRequestedEventArgs e, bool handled) => Resolver.Handled(e, handled);
+
+    /// <summary>
     /// Gets a value that indicates whether the permission request was initiated through a user gesture
     /// such as clicking an anchor tag with target.
     /// </summary>
@@ -67,6 +81,8 @@ public static class CoreWebView2PermissionRequestedEventArgsWrapper
 
     private sealed class DefaultCoreWebView2PermissionRequestedEventArgsResolver : ICoreWebView2PermissionRequestedEventArgsResolver
     {
+        bool ICoreWebView2PermissionRequestedEventArgsResolver.Handled(CoreWebView2PermissionRequestedEventArgs e) => e.Handled;
+        void ICoreWebView2PermissionRequestedEventArgsResolver.Handled(CoreWebView2PermissionRequestedEventArgs e, bool handled) => e.Handled = handled;
         bool ICoreWebView2PermissionRequestedEventArgsResolver.IsUserInitiated(CoreWebView2PermissionRequestedEventArgs e) => e.IsUserInitiated;
         CoreWebView2PermissionKind ICoreWebView2PermissionRequestedEventArgsResolver.PermissionKind(CoreWebView2PermissionRequestedEventArgs e) => e.PermissionKind;
         CoreWebView2PermissionState ICoreWebView2PermissionRequestedEventArgsResolver.State(CoreWebView2PermissionRequestedEventArgs e) => e.State;
@@ -81,6 +97,20 @@ public static class CoreWebView2PermissionRequestedEventArgsWrapper
 /// </summary>
 public interface ICoreWebView2PermissionRequestedEventArgsResolver
 {
+    /// <summary>
+    /// Gets a value that indicates whether the request is handled.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2PermissionRequestedEventArgs"/>.</param>
+    /// <returns><c>true</c> if the request is handled; otherwise, <c>false</c>.</returns>
+    bool Handled(CoreWebView2PermissionRequestedEventArgs e);
+
+    /// <summary>
+    /// Sets a value that indicates whether the request is handled.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2PermissionRequestedEventArgs"/>.</param>
+    /// <param name="handled"><c>true</c> if the request is handled; otherwise, <c>false</c>.</param>
+    void Handled(CoreWebView2PermissionRequestedEventArgs e, bool handled);
+
     /// <summary>
     /// Gets a value that indicates whether the permission request was initiated through a user gesture
     /// such as clicking an anchor tag with target.
