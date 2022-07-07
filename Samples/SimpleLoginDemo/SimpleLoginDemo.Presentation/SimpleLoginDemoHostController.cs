@@ -4,7 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 using Charites.Windows.Mvc;
 using Charites.Windows.Samples.SimpleLoginDemo.Presentation.Login;
-using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -50,7 +49,7 @@ public class SimpleLoginDemoHostController : IDisposable
     [EventHandler(Event = nameof(FrameworkElement.Loaded))]
     private void SimpleLoginDemoHost_Loaded([FromElement(Name = "HeaderGrid")] Grid headerGrid, [FromDI] ISimpleLoginDemoWindowProvider windowProvider)
     {
-        if (AppWindowTitleBar.IsCustomizationSupported()) windowProvider.Window.SetTitleBar(headerGrid);
+        windowProvider.Window.SetTitleBar(headerGrid);
 
         navigator.NavigateTo(new LoginContent());
     }

@@ -4,7 +4,6 @@
 // of the MIT license.  See the LICENSE file for details.
 using Charites.Windows.Mvc;
 using Charites.Windows.Samples.SimpleLoginDemo.Presentation;
-using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -27,12 +26,12 @@ public partial class App
     {
         var window = new Window
         {
+            ExtendsContentIntoTitleBar = true,
             Content = new ContentControl
             {
                 Content = new SimpleLoginDemoHost()
             }
         };
-        if (AppWindowTitleBar.IsCustomizationSupported()) window.ExtendsContentIntoTitleBar = true;
         windowProvider.Register(window);
         window.Activate();
     }
