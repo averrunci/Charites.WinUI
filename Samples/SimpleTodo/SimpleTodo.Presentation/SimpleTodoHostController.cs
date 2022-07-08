@@ -11,8 +11,8 @@ namespace Charites.Windows.Samples.SimpleTodo.Presentation;
 [View(Key = nameof(SimpleTodoHost))]
 public class SimpleTodoHostController
 {
-    [EventHandler(Event = nameof(FrameworkElement.Loaded))]
-    private void SimpleTodoHost_Loaded([FromElement(Name = "HeaderGrid")] Grid headerGrid, [FromDI] ISimpleTodoWindowProvider windowProvider)
+    [EventHandler(Event = nameof(FrameworkElement.Loading))]
+    private void SimpleTodoHost_Loading([FromElement(Name = "HeaderGrid")] Grid headerGrid, [FromDI] ISimpleTodoWindowProvider windowProvider)
     {
         windowProvider.Window.SetTitleBar(headerGrid);
     }

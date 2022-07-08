@@ -46,11 +46,15 @@ public class SimpleLoginDemoHostController : IDisposable
         host.Content.Value = e.Content;
     }
 
-    [EventHandler(Event = nameof(FrameworkElement.Loaded))]
-    private void SimpleLoginDemoHost_Loaded([FromElement(Name = "HeaderGrid")] Grid headerGrid, [FromDI] ISimpleLoginDemoWindowProvider windowProvider)
+    [EventHandler(Event = nameof(FrameworkElement.Loading))]
+    private void SimpleLoginDemoHost_Loading([FromElement(Name = "HeaderGrid")] Grid headerGrid, [FromDI] ISimpleLoginDemoWindowProvider windowProvider)
     {
         windowProvider.Window.SetTitleBar(headerGrid);
+    }
 
+    [EventHandler(Event = nameof(FrameworkElement.Loaded))]
+    private void SimpleLoginDemoHost_Loaded()
+    {
         navigator.NavigateTo(new LoginContent());
     }
 }
