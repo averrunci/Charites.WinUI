@@ -53,7 +53,7 @@ internal sealed class WinUIEventHandlerExtension : EventHandlerExtension<Framewo
     {
         base.OnEventHandlerAdded(eventHandlers, element);
 
-        eventHandlers.GetBy(element.Name).From(element).With(new RoutedEventArgs()).Raise(nameof(FrameworkElement.Loaded));
+        eventHandlers.GetBy(element.Name).From(element).Raise(nameof(FrameworkElement.Loading));
     }
 
     private RoutedEvent? RetrieveRoutedEvent(FrameworkElement? element, string name)

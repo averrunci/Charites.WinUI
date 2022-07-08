@@ -21,22 +21,32 @@ internal class DispatcherContext : FixtureSteppable
         var currentWindow = await EnsureWindowAsync();
         var taskCompletionSource = new TaskCompletionSource();
 
-        async void OnElementLoaded(object? sender, RoutedEventArgs e)
+        void OnElementLoaded(object? sender, RoutedEventArgs e)
         {
             element.Loaded -= OnElementLoaded;
-            await Task.Delay(10);
             taskCompletionSource.SetResult();
         }
 
-        element.Loaded += OnElementLoaded;
-        await RunAsync(() => currentWindow.Content = element);
+        await RunAsync(() =>
+        {
+            element.Loaded += OnElementLoaded;
+            currentWindow.Content = element;
+        });
         await taskCompletionSource.Task;
     }
 
     protected async Task ClearWindowContentAsync()
     {
         var currentWindow = await EnsureWindowAsync();
-        await RunAsync(() => currentWindow.Content = null);
-        await Task.Delay(10);
+        var taskCompletionSource = new TaskCompletionSource();
+
+        void OnElementUnloaded(object? sender, RoutedEventArgs e) => taskCompletionSource.SetResult();
+
+        await RunAsync(() =>
+        {
+            if (currentWindow.Content is FrameworkElement element) element.Unloaded += OnElementUnloaded;
+            currentWindow.Content = null;
+        });
+        await taskCompletionSource.Task;
     }
 }

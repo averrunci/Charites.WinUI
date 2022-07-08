@@ -48,7 +48,7 @@ public sealed class WinUIControllerCollection : ControllerCollection<FrameworkEl
     /// <param name="associatedElement">The element to which controllers are attached.</param>
     protected override void SubscribeAssociatedElementEvents(FrameworkElement associatedElement)
     {
-        associatedElement.Loaded += OnElementLoaded;
+        associatedElement.Loading += OnElementLoading;
         associatedElement.Unloaded += OnElementUnloaded;
         associatedElement.DataContextChanged += OnElementDataContextChanged;
     }
@@ -59,15 +59,13 @@ public sealed class WinUIControllerCollection : ControllerCollection<FrameworkEl
     /// <param name="associatedElement">The element to which controllers are attached.</param>
     protected override void UnsubscribeAssociatedElementEvents(FrameworkElement associatedElement)
     {
-        associatedElement.Loaded -= OnElementLoaded;
+        associatedElement.Loading -= OnElementLoading;
         associatedElement.Unloaded -= OnElementUnloaded;
         associatedElement.DataContextChanged -= OnElementDataContextChanged;
     }
 
-    private void OnElementLoaded(object? sender, RoutedEventArgs e)
+    private void OnElementLoading(FrameworkElement? element, object _)
     {
-        if (sender is not FrameworkElement element) return;
-
         SetElement(element);
         AttachExtensions();
     }
