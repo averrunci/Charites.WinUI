@@ -53,6 +53,7 @@ internal sealed class WinUIEventHandlerExtension : EventHandlerExtension<Framewo
     {
         base.OnEventHandlerAdded(eventHandlers, element);
 
+        eventHandlers.GetBy(element.Name).From(element).Raise(nameof(FrameworkElement.DataContextChanged));
         eventHandlers.GetBy(element.Name).From(element).Raise(nameof(FrameworkElement.Loading));
     }
 

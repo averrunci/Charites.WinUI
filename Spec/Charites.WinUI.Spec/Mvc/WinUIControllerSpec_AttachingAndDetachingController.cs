@@ -16,10 +16,14 @@ class WinUIControllerSpec_AttachingAndDetachingController : DispatcherContext
     TestElement Element { get; set; } = default!;
 
     TestWinUIControllers.TestWinUIController Controller { get; set; } = default!;
+    bool DataContextChangedEventHandled { get; set; }
+    bool LoadingEventHandled { get; set; }
     bool LoadedEventHandled { get; set; }
     bool ChangedEventHandled { get; set; }
 
     TestWinUIControllers.TestWinUIControllerBase[] Controllers { get; set; } = default!;
+    bool[] DataContextChangedEventsHandled { get; set; } = default!;
+    bool[] LoadingEventsHandled { get; set; } = default!;
     bool[] LoadedEventsHandled { get; set; } = default!;
     bool[] ChangedEventsHandled { get; set; } = default!;
 
@@ -61,6 +65,8 @@ class WinUIControllerSpec_AttachingAndDetachingController : DispatcherContext
             {
                 WinUIController.SetIsEnabled(Element, true);
                 Controller = Element.GetController<TestWinUIControllers.TestWinUIController>();
+                Controller.DataContextChangedAssertionHandler = () => DataContextChangedEventHandled = true;
+                Controller.LoadingAssertionHandler = () => LoadingEventHandled = true;
                 Controller.LoadedAssertionHandler = () => LoadedEventHandled = true;
                 Controller.ChangedAssertionHandler = () => ChangedEventHandled = true;
             });
@@ -73,6 +79,8 @@ class WinUIControllerSpec_AttachingAndDetachingController : DispatcherContext
         {
             Then("the element of the controller should be set", () => Controller.Element == Element);
 
+            Then("the DataContextChanged event should be handled", () => DataContextChangedEventHandled);
+            Then("the Loading event should be handled", () => LoadingEventHandled);
             Then("the Loaded event should be handled", () => LoadedEventHandled);
 
             When("the Changed event of the element is raised", () => Element.RaiseChanged());
@@ -101,6 +109,8 @@ class WinUIControllerSpec_AttachingAndDetachingController : DispatcherContext
             {
                 WinUIController.SetIsEnabled(Element, true);
                 Controller = Element.GetController<TestWinUIControllers.TestWinUIController>();
+                Controller.DataContextChangedAssertionHandler = () => DataContextChangedEventHandled = true;
+                Controller.LoadingAssertionHandler = () => LoadingEventHandled = true;
                 Controller.LoadedAssertionHandler = () => LoadedEventHandled = true;
                 Controller.ChangedAssertionHandler = () => ChangedEventHandled = true;
             });
@@ -113,6 +123,8 @@ class WinUIControllerSpec_AttachingAndDetachingController : DispatcherContext
         {
             Then("the element of the controller should be set", () => Controller.Element == Element);
 
+            Then("the DataContextChanged event should be handled", () => DataContextChangedEventHandled);
+            Then("the Loading event should be handled", () => LoadingEventHandled);
             Then("the Loaded event should be handled", () => LoadedEventHandled);
 
             When("the WinUIController is disabled for the element", () => WinUIController.SetIsEnabled(Element, false));
@@ -149,11 +161,15 @@ class WinUIControllerSpec_AttachingAndDetachingController : DispatcherContext
                     Element.GetController<TestWinUIControllers.MultiTestWinUIControllerB>(),
                     Element.GetController<TestWinUIControllers.MultiTestWinUIControllerC>()
                 };
+                DataContextChangedEventsHandled = new[] { false, false, false };
+                LoadingEventsHandled = new[] { false, false, false };
                 LoadedEventsHandled = new[] { false, false, false };
                 ChangedEventsHandled = new[] { false, false, false };
                 for (var index = 0; index < Controllers.Length; ++index)
                 {
                     var eventHandledIndex = index;
+                    Controllers[index].DataContextChangedAssertionHandler = () => DataContextChangedEventsHandled[eventHandledIndex] = true;
+                    Controllers[index].LoadingAssertionHandler = () => LoadingEventsHandled[eventHandledIndex] = true;
                     Controllers[index].LoadedAssertionHandler = () => LoadedEventsHandled[eventHandledIndex] = true;
                     Controllers[index].ChangedAssertionHandler = () => ChangedEventsHandled[eventHandledIndex] = true;
                 }
@@ -167,6 +183,8 @@ class WinUIControllerSpec_AttachingAndDetachingController : DispatcherContext
         {
             Then("the element of the controller should be set", () => Controllers.All(controller => controller.Element == Element));
 
+            Then("the DataContextChanged event should be handled", () => DataContextChangedEventsHandled.All(h => h));
+            Then("the Loading event should be handled", () => LoadingEventsHandled.All(h => h));
             Then("the Loaded event should be handled", () => LoadedEventsHandled.All(h => h));
 
             When("the Changed event of the element is raised", () => Element.RaiseChanged());

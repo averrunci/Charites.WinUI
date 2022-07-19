@@ -34,6 +34,12 @@ internal class TestWinUIControllers
             TappedAssertionHandler?.Invoke();
         }
 
+        [EventHandler(ElementName = "Element", Event = nameof(FrameworkElement.Loading))]
+        protected void OnElementLoading()
+        {
+            LoadingAssertionHandler?.Invoke();
+        }
+
         [EventHandler(ElementName = "Element", Event = nameof(FrameworkElement.Loaded))]
         protected void OnElementLoaded()
         {
@@ -65,6 +71,7 @@ internal class TestWinUIControllers
         }
 
         public Action? TappedAssertionHandler { get; set; }
+        public Action? LoadingAssertionHandler { get; set; }
         public Action? LoadedAssertionHandler { get; set; }
         public Action? ChangedAssertionHandler { get; set; }
         public Action? DataContextChangedAssertionHandler { get; set; }
@@ -130,6 +137,12 @@ internal class TestWinUIControllers
             await Task.Run(() => TappedAssertionHandler?.Invoke());
         }
 
+        [EventHandler(ElementName = "Element", Event = nameof(FrameworkElement.Loading))]
+        private async Task OnElementLoadingAsync()
+        {
+            await Task.Run(() => LoadingAssertionHandler?.Invoke());
+        }
+
         [EventHandler(ElementName = "Element", Event = nameof(FrameworkElement.Loaded))]
         private async Task OnElementLoadedAsync()
         {
@@ -161,6 +174,7 @@ internal class TestWinUIControllers
         }
 
         public Action? TappedAssertionHandler { get; set; }
+        public Action? LoadingAssertionHandler { get; set; }
         public Action? LoadedAssertionHandler { get; set; }
         public Action? ChangedAssertionHandler { get; set; }
         public Action? DataContextChangedAssertionHandler { get; set; }
