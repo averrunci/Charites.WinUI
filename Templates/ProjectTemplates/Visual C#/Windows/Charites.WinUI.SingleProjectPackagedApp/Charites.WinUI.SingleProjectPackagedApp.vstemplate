@@ -24,10 +24,10 @@
   </TemplateData>
   <TemplateContent PreferedSolutionConfiguration="Debug|x64">
     <CustomParameters>
-      <CustomParameter Name="$WindowsAppSDKNupkgVersion$" Value="1.1.1" />
+      <CustomParameter Name="$WindowsAppSDKNupkgVersion$" Value="1.1.2" />
       <CustomParameter Name="$WindowsSDKBuildToolsNupkgVersion$" Value="10.0.22621.1" />
       <CustomParameter Name="$DotNetVersion$" Value="net6.0" />
-      <CustomParameter Name="$CharitesWinUINupkgVersion$" Value="1.1.0"/>
+      <CustomParameter Name="$CharitesWinUINupkgVersion$" Value="1.1.1"/>
     </CustomParameters>
     <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">Properties\launchSettings.json</ProjectItem>

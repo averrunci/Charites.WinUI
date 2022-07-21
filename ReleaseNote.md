@@ -1,5 +1,12 @@
 # Release Note
 
+## v1.1.1
+
+### Changes
+
+- Change the event on which elements and extensions are attached to a controller from the FrameworkElement.Loaded event to the FrameworkElement.Loading event.
+- Change to raise the FrameworkElement.DataContextChanged event when elements and extensions are attached to a controller.
+
 ## v1.1.0
 
 ### Add

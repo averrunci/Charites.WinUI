@@ -15,9 +15,9 @@
     <PackageCertificateThumbprint>ADB6B674C953474C91E33DFDE34328B084696CAF</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>Charites.WinUI.Spec_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <Version>1.1.0</Version>
-    <AssemblyVersion>1.1.0</AssemblyVersion>
-    <FileVersion>1.1.0</FileVersion>
+    <Version>1.1.1</Version>
+    <AssemblyVersion>1.1.1</AssemblyVersion>
+    <FileVersion>1.1.1</FileVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>averrunci</Authors>
