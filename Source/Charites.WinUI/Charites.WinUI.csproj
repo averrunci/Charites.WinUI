@@ -19,6 +19,7 @@
     <Copyright>Copyright (C) 2022 Fievus</Copyright>
     <PackageProjectUrl>https://github.com/averrunci/Charites.WinUI</PackageProjectUrl>
     <PackageTags>winui mvc charites</PackageTags>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
