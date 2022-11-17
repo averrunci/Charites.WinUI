@@ -26,10 +26,10 @@ public static class BreadcrumbBarItemClickedEventArgsWrapper
     public static int Index(this BreadcrumbBarItemClickedEventArgs e) => Resolver.Index(e);
 
     /// <summary>
-    /// Gets the <see cref="BreadcrumbBarItem.Content"/> property value of the <see cref="BreadcrumbBarItem"/> that is clicked.
+    /// Gets the content value of the <see cref="BreadcrumbBarItem"/> that is clicked.
     /// </summary>
     /// <param name="e">The requested <see cref="BreadcrumbBarItemClickedEventArgs"/>.</param>
-    /// <returns>The <see cref="BreadcrumbBarItem.Content"/> property value of the <see cref="BreadcrumbBarItem"/> that is clicked.</returns>
+    /// <returns>The content value of the <see cref="BreadcrumbBarItem"/> that is clicked.</returns>
     public static object? Item(this BreadcrumbBarItemClickedEventArgs e) => Resolver.Item(e);
 
     private sealed class DefaultBreadcrumbBarItemClickedEventArgsResolver : IBreadcrumbBarItemClickedEventArgsResolver
@@ -52,9 +52,9 @@ public interface IBreadcrumbBarItemClickedEventArgsResolver
     int Index(BreadcrumbBarItemClickedEventArgs e);
 
     /// <summary>
-    /// Gets the <see cref="BreadcrumbBarItem.Content"/> property value of the <see cref="BreadcrumbBarItem"/> that is clicked.
+    /// Gets the content value of the <see cref="BreadcrumbBarItem"/> that is clicked.
     /// </summary>
     /// <param name="e">The requested <see cref="BreadcrumbBarItemClickedEventArgs"/>.</param>
-    /// <returns>The <see cref="BreadcrumbBarItem.Content"/> property value of the <see cref="BreadcrumbBarItem"/> that is clicked.</returns>
+    /// <returns>The content value of the <see cref="BreadcrumbBarItem"/> that is clicked.</returns>
     object? Item(BreadcrumbBarItemClickedEventArgs e);
 }

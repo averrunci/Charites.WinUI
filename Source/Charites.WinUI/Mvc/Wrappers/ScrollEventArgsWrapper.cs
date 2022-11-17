@@ -19,10 +19,10 @@ public static class ScrollEventArgsWrapper
     public static IScrollEventArgsResolver Resolver { get; set; } = new DefaultScrollEventArgsResolver();
 
     /// <summary>
-    /// Gets the new <see cref="ScrollBar.Value"/> of the <see cref="ScrollBar"/>.
+    /// Gets the new <see cref="RangeBase.Value"/> of the <see cref="ScrollBar"/>.
     /// </summary>
     /// <param name="e">The requested <see cref="ScrollEventArgs"/>.</param>
-    /// <returns>The <see cref="ScrollBar.Value"/> of the <see cref="ScrollBar"/> after the event.</returns>
+    /// <returns>The <see cref="RangeBase.Value"/> of the <see cref="ScrollBar"/> after the event.</returns>
     public static double NewValue(this ScrollEventArgs e) => Resolver.NewValue(e);
 
     /// <summary>
@@ -54,10 +54,10 @@ public static class ScrollEventArgsWrapper
 public interface IScrollEventArgsResolver
 {
     /// <summary>
-    /// Gets the new <see cref="ScrollBar.Value"/> of the <see cref="ScrollBar"/>.
+    /// Gets the new <see cref="RangeBase.Value"/> of the <see cref="ScrollBar"/>.
     /// </summary>
     /// <param name="e">The requested <see cref="ScrollEventArgs"/>.</param>
-    /// <returns>The <see cref="ScrollBar.Value"/> of the <see cref="ScrollBar"/> after the event.</returns>
+    /// <returns>The <see cref="RangeBase.Value"/> of the <see cref="ScrollBar"/> after the event.</returns>
     double NewValue(ScrollEventArgs e);
 
     /// <summary>
