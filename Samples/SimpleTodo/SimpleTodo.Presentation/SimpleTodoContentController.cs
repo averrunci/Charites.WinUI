@@ -16,9 +16,9 @@ public class SimpleTodoContentController
 {
     private void SetDataContext(SimpleTodoContent? content)
     {
-        if (this.content is not null) UnsubscribeEventHandler(this.content);
+        if (this.content is not null) UnsubscribeFromEvents(this.content);
         this.content = content;
-        if (this.content is not null) SubscribeEventHandler(this.content);
+        if (this.content is not null) SubscribeToEvents(this.content);
     }
     private SimpleTodoContent? content;
 
@@ -26,12 +26,12 @@ public class SimpleTodoContentController
     private void SetAllCompletedCheckBox(CheckBox? allCompletedCheckBox) => this.allCompletedCheckBox = allCompletedCheckBox;
     private CheckBox? allCompletedCheckBox;
 
-    private void SubscribeEventHandler(SimpleTodoContent content)
+    private void SubscribeToEvents(SimpleTodoContent content)
     {
         content.AllCompleted.PropertyValueChanged += OnAllCompletedChanged;
     }
 
-    private void UnsubscribeEventHandler(SimpleTodoContent content)
+    private void UnsubscribeFromEvents(SimpleTodoContent content)
     {
         content.AllCompleted.PropertyValueChanged -= OnAllCompletedChanged;
     }

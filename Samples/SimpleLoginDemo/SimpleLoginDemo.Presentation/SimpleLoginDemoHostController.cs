@@ -10,51 +10,47 @@ using Microsoft.UI.Xaml.Controls;
 namespace Charites.Windows.Samples.SimpleLoginDemo.Presentation;
 
 [View(Key = nameof(SimpleLoginDemoHost))]
-public class SimpleLoginDemoHostController : IDisposable
+public class SimpleLoginDemoHostController : ControllerBase<SimpleLoginDemoHost>, IDisposable
 {
     private readonly IContentNavigator navigator;
-
-    private void SetDataContext(SimpleLoginDemoHost? host) => this.host = host;
-    private SimpleLoginDemoHost? host;
 
     public SimpleLoginDemoHostController(IContentNavigator navigator)
     {
         this.navigator = navigator;
 
-        SubscribeContentNavigatorEvent();
+        SubscribeToContentNavigatorEvent();
     }
 
     public void Dispose()
     {
-        UnsubscribeContentNavigatorEvent();
+        UnsubscribeFromContentNavigatorEvent();
     }
 
-    private void SubscribeContentNavigatorEvent()
+    private void SubscribeToContentNavigatorEvent()
     {
         navigator.Navigated += OnContentNavigated;
     }
 
-    private void UnsubscribeContentNavigatorEvent()
+    private void UnsubscribeFromContentNavigatorEvent()
     {
         navigator.Navigated -= OnContentNavigated;
     }
 
-    private void OnContentNavigated(object? sender, ContentNavigatedEventArgs e)
+    private void Navigate(SimpleLoginDemoHost host, object content)
     {
-        if (host is null) return;
-
-        host.Content.Value = e.Content;
+        host.Content.Value = content;
     }
 
-    [EventHandler(Event = nameof(FrameworkElement.Loading))]
-    private void SimpleLoginDemoHost_Loading([FromElement(Name = "HeaderGrid")] Grid headerGrid, [FromDI] ISimpleLoginDemoWindowProvider windowProvider)
-    {
-        windowProvider.Window.SetTitleBar(headerGrid);
-    }
-
-    [EventHandler(Event = nameof(FrameworkElement.Loaded))]
-    private void SimpleLoginDemoHost_Loaded()
+    private void NavigateToLoginContent()
     {
         navigator.NavigateTo(new LoginContent());
     }
+
+    private void OnContentNavigated(object? sender, ContentNavigatedEventArgs e) => DataContext.IfPresent(e.Content, Navigate);
+
+    [EventHandler(Event = nameof(FrameworkElement.Loading))]
+    private void SimpleLoginDemoHost_Loading([FromElement(Name = "HeaderGrid")] Grid headerGrid, [FromDI] ISimpleLoginDemoWindowProvider windowProvider)
+        => windowProvider.Window.SetTitleBar(headerGrid);
+    [EventHandler(Event = nameof(FrameworkElement.Loaded))]
+    private void SimpleLoginDemoHost_Loaded() => NavigateToLoginContent();
 }

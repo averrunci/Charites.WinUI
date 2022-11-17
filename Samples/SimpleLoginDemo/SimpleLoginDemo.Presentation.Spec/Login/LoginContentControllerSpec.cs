@@ -22,6 +22,11 @@ class LoginContentControllerSpec : FixtureSteppable
     ILoginCommand Command { get; } = Substitute.For<ILoginCommand>();
     IContentNavigator Navigator { get; } = Substitute.For<IContentNavigator>();
 
+    public LoginContentControllerSpec()
+    {
+        WinUIController.SetDataContext(LoginContent, Controller);
+    }
+
     [Example("Logs the user in when the user in authenticated")]
     void Ex01()
     {
@@ -35,7 +40,6 @@ class LoginContentControllerSpec : FixtureSteppable
         When("to click the Login button", async () =>
             await WinUIController.EventHandlersOf(Controller)
                 .GetBy("LoginButton")
-                .ResolveFromDataContext(LoginContent)
                 .ResolveFromDI<ILoginCommand>(() => Command)
                 .ResolveFromDI<IContentNavigator>(() => Navigator)
                 .RaiseAsync(nameof(ButtonBase.Click))
@@ -60,7 +64,6 @@ class LoginContentControllerSpec : FixtureSteppable
         When("to click the Login button", async () =>
             await WinUIController.EventHandlersOf(Controller)
                 .GetBy("LoginButton")
-                .ResolveFromDataContext(LoginContent)
                 .ResolveFromDI<ILoginCommand>(() => Command)
                 .ResolveFromDI<IContentNavigator>(() => Navigator)
                 .RaiseAsync(nameof(ButtonBase.Click))

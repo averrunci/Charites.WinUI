@@ -8,9 +8,9 @@ using Charites.Windows.Samples.SimpleLoginDemo.Presentation.Home;
 namespace Charites.Windows.Samples.SimpleLoginDemo.Presentation.Login;
 
 [View(Key = nameof(LoginContent))]
-public  class LoginContentController
+public  class LoginContentController : ControllerBase<LoginContent>
 {
-    private async Task LoginButton_Click([FromDataContext] LoginContent content, [FromDI] ILoginCommand command, [FromDI] IContentNavigator navigator)
+    private async Task LoginAsync(LoginContent content, ILoginCommand command, IContentNavigator navigator)
     {
         content.Message.Value = string.Empty;
 
@@ -26,4 +26,6 @@ public  class LoginContentController
                 break;
         }
     }
+
+    private Task LoginButton_Click([FromDI] ILoginCommand command, [FromDI] IContentNavigator navigator) => DataContext.IfPresentAsync(command, navigator, LoginAsync);
 }

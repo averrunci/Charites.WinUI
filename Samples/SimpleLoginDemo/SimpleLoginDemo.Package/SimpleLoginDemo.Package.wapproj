@@ -42,7 +42,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\SimpleLoginDemo\SimpleLoginDemo.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>E82CA545E01CEDD123DD3632540DF7B58456244C</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>913157CC044F2AB3EABC900CCBE40295670BC3D5</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>SimpleLoginDemo.Package_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
@@ -67,10 +67,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.2">
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221109.1">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.1">
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>
