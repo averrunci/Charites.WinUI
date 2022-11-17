@@ -1,5 +1,13 @@
 # Release Note
 
+## v1.2.0
+
+### Changes
+
+- Change Microsoft.WindowsAppSDK version to 1.2.221109.1
+- Change Charites version to 2.2.0.
+- Change Charites.Bindings version to 2.2.0.
+
 ## v1.1.1
 
 ### Changes
