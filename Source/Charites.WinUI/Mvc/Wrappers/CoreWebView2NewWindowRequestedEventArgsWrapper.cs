@@ -38,6 +38,17 @@ public static class CoreWebView2NewWindowRequestedEventArgsWrapper
     public static void Handled(this CoreWebView2NewWindowRequestedEventArgs e, bool handled) => Resolver.Handled(e, handled);
 
     /// <summary>
+    /// Gets a value that indicates whether the new window request is initiated through a user gesture
+    /// such as selecting an anchor tag with target.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2NewWindowRequestedEventArgs"/>.</param>
+    /// <returns>
+    /// <c>true</c> when the new window request was initiated through a user gesture such as selecting
+    /// an anchor tag with target; otherwise <c>false</c>.
+    /// </returns>
+    public static bool IsUserInitiated(this CoreWebView2NewWindowRequestedEventArgs e) => Resolver.IsUserInitiated(e);
+
+    /// <summary>
     /// Gets the name of the new window.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2NewWindowRequestedEventArgs"/>.</param>
@@ -84,6 +95,7 @@ public static class CoreWebView2NewWindowRequestedEventArgsWrapper
     {
         bool ICoreWebView2NewWindowRequestedEventArgsResolver.Handled(CoreWebView2NewWindowRequestedEventArgs e) => e.Handled;
         void ICoreWebView2NewWindowRequestedEventArgsResolver.Handled(CoreWebView2NewWindowRequestedEventArgs e, bool handled) => e.Handled = handled;
+        bool ICoreWebView2NewWindowRequestedEventArgsResolver.IsUserInitiated(CoreWebView2NewWindowRequestedEventArgs e) => e.IsUserInitiated;
         string ICoreWebView2NewWindowRequestedEventArgsResolver.Name(CoreWebView2NewWindowRequestedEventArgs e) => e.Name;
         CoreWebView2 ICoreWebView2NewWindowRequestedEventArgsResolver.NewWindow(CoreWebView2NewWindowRequestedEventArgs e) => e.NewWindow;
         void ICoreWebView2NewWindowRequestedEventArgsResolver.NewWindow(CoreWebView2NewWindowRequestedEventArgs e, CoreWebView2 newWindow) => e.NewWindow = newWindow;
@@ -115,6 +127,17 @@ public interface ICoreWebView2NewWindowRequestedEventArgsResolver
     /// <c>true</c> if the <see cref="CoreWebView2.NewWindowRequested"/> event is handled by host; otherwise, <c>false</c>.
     /// </param>
     void Handled(CoreWebView2NewWindowRequestedEventArgs e, bool handled);
+
+    /// <summary>
+    /// Gets a value that indicates whether the new window request is initiated through a user gesture
+    /// such as selecting an anchor tag with target.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2NewWindowRequestedEventArgs"/>.</param>
+    /// <returns>
+    /// <c>true</c> when the new window request was initiated through a user gesture such as selecting
+    /// an anchor tag with target; otherwise <c>false</c>.
+    /// </returns>
+    bool IsUserInitiated(CoreWebView2NewWindowRequestedEventArgs e);
 
     /// <summary>
     /// Gets the name of the new window.
