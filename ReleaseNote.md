@@ -1,5 +1,12 @@
 # Release Note
 
+## v1.2.1
+
+### Add
+
+- Add the MediaTransportControlsThumbnailRequestedEventArgsWrapper class.
+- Add the IsUserInitiated method to the CoreWebView2NewWindowRequestedEventArgsWrapper class.
+
 ## v1.2.0
 
 ### Changes

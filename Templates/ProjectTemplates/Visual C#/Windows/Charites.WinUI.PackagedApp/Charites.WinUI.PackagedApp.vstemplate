@@ -28,7 +28,7 @@
       <CustomParameter Name="$WindowsAppSDKNupkgVersion$" Value="1.2.221109.1" />
       <CustomParameter Name="$WindowsSDKBuildToolsNupkgVersion$" Value="10.0.22621.755" />
       <CustomParameter Name="$DotNetVersion$" Value="net6.0" />
-      <CustomParameter Name="$CharitesWinUINupkgVersion$" Value="1.2.0"/>
+      <CustomParameter Name="$CharitesWinUINupkgVersion$" Value="1.2.1"/>
     </CustomParameters>
     <ProjectCollection>
       <ProjectTemplateLink ProjectName="$projectname$.Package" CopyParameters="true">WapProj\Charites.WinUI.WapProj.vstemplate</ProjectTemplateLink>
