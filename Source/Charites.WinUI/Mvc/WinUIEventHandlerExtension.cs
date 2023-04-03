@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2023 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -53,9 +53,16 @@ internal sealed class WinUIEventHandlerExtension : EventHandlerExtension<Framewo
     {
         base.OnEventHandlerAdded(eventHandlers, element);
 
-        eventHandlers.GetBy(element.Name).From(element).Raise(nameof(FrameworkElement.DataContextChanged));
-        eventHandlers.GetBy(element.Name).From(element).Raise(nameof(FrameworkElement.Loading));
+        RaiseEvent(eventHandlers, element, nameof(FrameworkElement.DataContextChanged), element.Name);
+        if (!string.IsNullOrEmpty(element.Name)) RaiseEvent(eventHandlers, element, nameof(FrameworkElement.DataContextChanged));
+
+        RaiseEvent(eventHandlers, element, nameof(FrameworkElement.Loading), element.Name);
+        if (!string.IsNullOrEmpty(element.Name)) RaiseEvent(eventHandlers, element, nameof(FrameworkElement.Loading));
+
     }
+
+    private void RaiseEvent(EventHandlerBase<FrameworkElement, WinUIEventHandlerItem> eventHandlers, FrameworkElement element, string eventName, string? elementName = null)
+        => eventHandlers.GetBy(elementName).From(element).Raise(eventName);
 
     private RoutedEvent? RetrieveRoutedEvent(FrameworkElement? element, string name)
     {
