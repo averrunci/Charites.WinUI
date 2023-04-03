@@ -1,5 +1,11 @@
 # Release Note
 
+## v1.2.2
+
+### Bug fix
+
+- Fix an issue that Loading and DataContextChanged events can't be handled on a controller is attached when a name of a root element is specified and a name of its event handler is not specified.
+
 ## v1.2.1
 
 ### Add
