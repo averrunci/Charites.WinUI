@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2023 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -52,6 +52,32 @@ public static class CoreWebView2PermissionRequestedEventArgsWrapper
     public static CoreWebView2PermissionKind PermissionKind(this CoreWebView2PermissionRequestedEventArgs e) => Resolver.PermissionKind(e);
 
     /// <summary>
+    /// Gets a value that indicates whether not to persist the state beyond the current request,
+    /// and to continue to receive <see cref="CoreWebView2.PermissionRequested"/> events
+    /// for this origin and permission kind.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2PermissionRequestedEventArgs"/>.</param>
+    /// <returns>
+    /// <c>false</c> if not to persist the state beyond the current request, and to continue to receive
+    /// <see cref="CoreWebView2.PermissionRequested"/> events for this origin and permission kind;
+    /// otherwise, <c>true</c>.
+    /// </returns>
+    public static bool SavesInProfile(this CoreWebView2PermissionRequestedEventArgs e) => Resolver.SavesInProfile(e);
+
+    /// <summary>
+    /// Sets a value that indicates whether not to persist the state beyond the current request,
+    /// and to continue to receive <see cref="CoreWebView2.PermissionRequested"/> events
+    /// for this origin and permission kind.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2PermissionRequestedEventArgs"/>.</param>
+    /// <param name="savesInProfile">
+    /// <c>false</c> if not to persist the state beyond the current request, and to continue to receive
+    /// <see cref="CoreWebView2.PermissionRequested"/> events for this origin and permission kind;
+    /// otherwise, <c>true</c>.
+    /// </param>
+    public static void SavesInProfile(this CoreWebView2PermissionRequestedEventArgs e, bool savesInProfile) => Resolver.SavesInProfile(e, savesInProfile);
+
+    /// <summary>
     /// Gets the status of a permission request. For example, whether the request is ignored.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2PermissionRequestedEventArgs"/>.</param>
@@ -85,6 +111,8 @@ public static class CoreWebView2PermissionRequestedEventArgsWrapper
         void ICoreWebView2PermissionRequestedEventArgsResolver.Handled(CoreWebView2PermissionRequestedEventArgs e, bool handled) => e.Handled = handled;
         bool ICoreWebView2PermissionRequestedEventArgsResolver.IsUserInitiated(CoreWebView2PermissionRequestedEventArgs e) => e.IsUserInitiated;
         CoreWebView2PermissionKind ICoreWebView2PermissionRequestedEventArgsResolver.PermissionKind(CoreWebView2PermissionRequestedEventArgs e) => e.PermissionKind;
+        bool ICoreWebView2PermissionRequestedEventArgsResolver.SavesInProfile(CoreWebView2PermissionRequestedEventArgs e) => e.SavesInProfile;
+        void ICoreWebView2PermissionRequestedEventArgsResolver.SavesInProfile(CoreWebView2PermissionRequestedEventArgs e, bool savesInProfile) => e.SavesInProfile = savesInProfile;
         CoreWebView2PermissionState ICoreWebView2PermissionRequestedEventArgsResolver.State(CoreWebView2PermissionRequestedEventArgs e) => e.State;
         void ICoreWebView2PermissionRequestedEventArgsResolver.State(CoreWebView2PermissionRequestedEventArgs e, CoreWebView2PermissionState state) => e.State = state;
         string ICoreWebView2PermissionRequestedEventArgsResolver.Uri(CoreWebView2PermissionRequestedEventArgs e) => e.Uri;
@@ -128,6 +156,32 @@ public interface ICoreWebView2PermissionRequestedEventArgsResolver
     /// <param name="e">The requested <see cref="CoreWebView2PermissionRequestedEventArgs"/>.</param>
     /// <returns>The kind of the permission that is requested.</returns>
     CoreWebView2PermissionKind PermissionKind(CoreWebView2PermissionRequestedEventArgs e);
+
+    /// <summary>
+    /// Gets a value that indicates whether not to persist the state beyond the current request,
+    /// and to continue to receive <see cref="CoreWebView2.PermissionRequested"/> events
+    /// for this origin and permission kind.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2PermissionRequestedEventArgs"/>.</param>
+    /// <returns>
+    /// <c>false</c> if not to persist the state beyond the current request, and to continue to receive
+    /// <see cref="CoreWebView2.PermissionRequested"/> events for this origin and permission kind;
+    /// otherwise, <c>true</c>.
+    /// </returns>
+    bool SavesInProfile(CoreWebView2PermissionRequestedEventArgs e);
+
+    /// <summary>
+    /// Sets a value that indicates whether not to persist the state beyond the current request,
+    /// and to continue to receive <see cref="CoreWebView2.PermissionRequested"/> events
+    /// for this origin and permission kind.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2PermissionRequestedEventArgs"/>.</param>
+    /// <param name="savesInProfile">
+    /// <c>false</c> if not to persist the state beyond the current request, and to continue to receive
+    /// <see cref="CoreWebView2.PermissionRequested"/> events for this origin and permission kind;
+    /// otherwise, <c>true</c>.
+    /// </param>
+    void SavesInProfile(CoreWebView2PermissionRequestedEventArgs e, bool savesInProfile);
 
     /// <summary>
     /// Gets the status of a permission request. For example, whether the request is ignored.
