@@ -7,23 +7,23 @@
     <UseWinUI>true</UseWinUI>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>1.2.0</Version>
-    <AssemblyVersion>1.2.0</AssemblyVersion>
-    <FileVersion>1.2.0</FileVersion>
+    <Version>1.3.0</Version>
+    <AssemblyVersion>1.3.0</AssemblyVersion>
+    <FileVersion>1.3.0</FileVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>averrunci</Authors>
     <Description>The presentation specification library for the sample app using Charites.WinUI.</Description>
-    <Copyright>Copyright (C) 2022 Fievus</Copyright>
+    <Copyright>Copyright (C) 2022-2023 Fievus</Copyright>
     <PackageProjectUrl>https://github.com/averrunci/Charites.WinUI</PackageProjectUrl>
     <PackageTags>winui mvc charites</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221109.1" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
-    <PackageReference Include="Carna.WinUIRunner" Version="2.1.0" />
-    <PackageReference Include="NSubstitute" Version="4.4.0" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230331000" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+    <PackageReference Include="Carna.WinUIRunner" Version="2.1.1" />
+    <PackageReference Include="NSubstitute" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
