@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2023 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -17,6 +17,15 @@ public static class CoreWebView2NavigationCompletedEventArgsWrapper
     /// that resolves data of the <see cref="CoreWebView2NavigationCompletedEventArgs"/>.
     /// </summary>
     public static ICoreWebView2NavigationCompletedEventArgsResolver Resolver { get; set; } = new DefaultCoreWebView2NavigationCompletedEventArgsResolver();
+
+    /// <summary>
+    /// Gets the HTTP status code of the navigation.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2NavigationCompletedEventArgs"/>.</param>
+    /// <returns>
+    /// The HTTP status code of the navigation if it involved an HTTP request.
+    /// </returns>
+    public static int HttpStatusCode(this CoreWebView2NavigationCompletedEventArgs e) => Resolver.HttpStatusCode(e);
 
     /// <summary>
     /// Gets a value that indicates whether the navigation is successful.
@@ -45,6 +54,7 @@ public static class CoreWebView2NavigationCompletedEventArgsWrapper
 
     private sealed class DefaultCoreWebView2NavigationCompletedEventArgsResolver : ICoreWebView2NavigationCompletedEventArgsResolver
     {
+        int ICoreWebView2NavigationCompletedEventArgsResolver.HttpStatusCode(CoreWebView2NavigationCompletedEventArgs e) => e.HttpStatusCode;
         bool ICoreWebView2NavigationCompletedEventArgsResolver.IsSuccess(CoreWebView2NavigationCompletedEventArgs e) => e.IsSuccess;
         ulong ICoreWebView2NavigationCompletedEventArgsResolver.NavigationId(CoreWebView2NavigationCompletedEventArgs e) => e.NavigationId;
         CoreWebView2WebErrorStatus ICoreWebView2NavigationCompletedEventArgsResolver.WebErrorStatus(CoreWebView2NavigationCompletedEventArgs e) => e.WebErrorStatus;
@@ -56,6 +66,15 @@ public static class CoreWebView2NavigationCompletedEventArgsWrapper
 /// </summary>
 public interface ICoreWebView2NavigationCompletedEventArgsResolver
 {
+    /// <summary>
+    /// Gets the HTTP status code of the navigation.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2NavigationCompletedEventArgs"/>.</param>
+    /// <returns>
+    /// The HTTP status code of the navigation if it involved an HTTP request.
+    /// </returns>
+    int HttpStatusCode(CoreWebView2NavigationCompletedEventArgs e);
+
     /// <summary>
     /// Gets a value that indicates whether the navigation is successful.
     /// </summary>
