@@ -1,5 +1,18 @@
 # Release Note
 
+## v1.3.0
+
+### Add
+
+- Add the CoreWebView2ServerCertificateErrorDetectedEventArgsWrapper class.
+- Add the XamlResourceReferenceFailedEventArgs class.
+- Add the HttpStatusCode method to the CoreWebView2NavigationCompletedEventArgsWrapper class.
+- Add the SavesInProfile method to the CoreWebView2PermissionRequestedEventArgsWrapper class.
+
+### Changes
+
+- Change Microsoft.WindowsAppSDK version to 1.3.230331000.
+
 ## v1.2.2
 
 ### Bug fix
