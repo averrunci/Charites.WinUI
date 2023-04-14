@@ -41,7 +41,7 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221109.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
     <Manifest Include="$(ApplicationManifest)" />
-    <PackageReference Include="Carna.WinUIRunner" Version="2.1.0" />
+    <PackageReference Include="Carna.WinUIRunner" Version="2.1.1" />
     <PackageReference Include="NSubstitute" Version="5.0.0" />
   </ItemGroup>
 
