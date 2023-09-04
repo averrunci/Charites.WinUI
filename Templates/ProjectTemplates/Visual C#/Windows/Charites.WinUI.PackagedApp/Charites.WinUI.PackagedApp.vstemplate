@@ -25,10 +25,10 @@
   </TemplateData>
   <TemplateContent PreferedSolutionConfiguration="Debug|x64">
     <CustomParameters>
-      <CustomParameter Name="$WindowsAppSDKNupkgVersion$" Value="1.3.230331000" />
+      <CustomParameter Name="$WindowsAppSDKNupkgVersion$" Value="1.4.230822000" />
       <CustomParameter Name="$WindowsSDKBuildToolsNupkgVersion$" Value="10.0.22621.756" />
       <CustomParameter Name="$DotNetVersion$" Value="net6.0" />
-      <CustomParameter Name="$CharitesWinUINupkgVersion$" Value="1.3.0"/>
+      <CustomParameter Name="$CharitesWinUINupkgVersion$" Value="1.4.0"/>
     </CustomParameters>
     <ProjectCollection>
       <ProjectTemplateLink ProjectName="$projectname$.Package" CopyParameters="true">WapProj\Charites.WinUI.WapProj.vstemplate</ProjectTemplateLink>

@@ -1,5 +1,32 @@
 # Release Note
 
+## v1.4.0
+
+### Add
+
+- Add the following event args wrappers:
+  - CoreWebView2LaunchingExternalUriSchemeEventArgsWrapper.
+  - ResourceManagerRequestedEventArgsWrapper.
+  - DesktopWindowXamlSourceGotFocusEventArgsWrapper.
+  - DesktopWindowXamlSourceTakeFocusRequestedEventArgsWrapper.
+  - AnnotatedScrollBarDetailLabelRequestedEventArgsWrapper.
+  - AnnotatedScrollBarScrollingEventArgsWrapper.
+  - ItemCollectionTransitionCompletedEventArgsWrapper.
+  - ItemsViewItemInvokedEventArgsWrapper.
+  - LinedFlowLayoutItemsInfoRequestedEventArgsWrapper.
+  - ScrollingAnchorRequestedEventArgsWrapper.
+  - ScrollingBringingIntoViewEventArgsWrapper.
+  - ScrollingScrollAnimationStartingEventArgsWrapper.
+  - ScrollingScrollCompletedEventArgsWrapper.
+  - ScrollingZoomAnimationStartingEventArgsWrapper.
+  - ScrollingZoomCompletedEventArgsWrapper.
+  - TreeViewSelectionChangedEventArgsWrapper.
+- Add the AdditionalObjects property to the CoreWebView2WebMessageReceivedEventArgsWrapper class.
+
+### Changes
+
+- Change Microsoft.WindowsAppSDK vertion to 1.4.230822000.
+
 ## v1.3.0
 
 ### Add
