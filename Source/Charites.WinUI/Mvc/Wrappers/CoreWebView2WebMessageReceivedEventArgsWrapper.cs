@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2023 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -17,6 +17,13 @@ public static class CoreWebView2WebMessageReceivedEventArgsWrapper
     /// that resolves data of the <see cref="CoreWebView2WebMessageReceivedEventArgs"/>.
     /// </summary>
     public static ICoreWebView2WebMessageReceivedEventArgsResolver Resolver { get; set; } = new DefaultCoreWebView2WebMessageReceivedEventArgsResolver();
+
+    /// <summary>
+    /// Gets additional received WebMessage objects.
+    /// </summary>
+    /// <param name="e">The requested &lt;see cref="CoreWebView2WebMessageReceivedEventArgs"/&gt;.</param>
+    /// <returns>Additional received WebMessage objects.</returns>
+    public static IReadOnlyList<object> AdditionalObjects(this CoreWebView2WebMessageReceivedEventArgs e) => Resolver.AdditionalObjects(e);
 
     /// <summary>
     /// Gets the URI of the document that sent this web message.
@@ -41,6 +48,7 @@ public static class CoreWebView2WebMessageReceivedEventArgsWrapper
 
     private sealed class DefaultCoreWebView2WebMessageReceivedEventArgsResolver : ICoreWebView2WebMessageReceivedEventArgsResolver
     {
+        IReadOnlyList<object> ICoreWebView2WebMessageReceivedEventArgsResolver.AdditionalObjects(CoreWebView2WebMessageReceivedEventArgs e) => e.AdditionalObjects;
         string ICoreWebView2WebMessageReceivedEventArgsResolver.Source(CoreWebView2WebMessageReceivedEventArgs e) => e.Source;
         string ICoreWebView2WebMessageReceivedEventArgsResolver.WebMessageAsJson(CoreWebView2WebMessageReceivedEventArgs e) => e.WebMessageAsJson;
         string ICoreWebView2WebMessageReceivedEventArgsResolver.TryGetWebMessageAsString(CoreWebView2WebMessageReceivedEventArgs e) => e.TryGetWebMessageAsString();
@@ -52,6 +60,13 @@ public static class CoreWebView2WebMessageReceivedEventArgsWrapper
 /// </summary>
 public interface ICoreWebView2WebMessageReceivedEventArgsResolver
 {
+    /// <summary>
+    /// Gets additional received WebMessage objects.
+    /// </summary>
+    /// <param name="e">The requested &lt;see cref="CoreWebView2WebMessageReceivedEventArgs"/&gt;.</param>
+    /// <returns>Additional received WebMessage objects.</returns>
+    IReadOnlyList<object> AdditionalObjects(CoreWebView2WebMessageReceivedEventArgs e);
+
     /// <summary>
     /// Gets the URI of the document that sent this web message.
     /// </summary>
