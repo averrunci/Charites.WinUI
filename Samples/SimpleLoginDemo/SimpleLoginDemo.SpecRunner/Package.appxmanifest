@@ -9,7 +9,7 @@
   <Identity
     Name="Charites.Samples.SimpleLoginDemo.SpecRunner"
     Publisher="CN=Fievus"
-    Version="1.0.0.0" />
+    Version="1.5.0.0" />
 
   <Properties>
     <DisplayName>SimpleLoginDemo.SpecRunner</DisplayName>
