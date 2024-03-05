@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -70,6 +70,13 @@ public static class CoreWebView2NewWindowRequestedEventArgsWrapper
     public static void NewWindow(this CoreWebView2NewWindowRequestedEventArgs e, CoreWebView2 newWindow) => Resolver.NewWindow(e, newWindow);
 
     /// <summary>
+    /// Gets the frame info of the frame where the new window requested originated.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2NewWindowRequestedEventArgs"/>.</param>
+    /// <returns>The frame info of the frame where the new window requested originated.</returns>
+    public static CoreWebView2FrameInfo OriginalSourceFrameInfo(this CoreWebView2NewWindowRequestedEventArgs e) => Resolver.OriginalSourceFrameInfo(e);
+
+    /// <summary>
     /// Gets the target uri of the new window request.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2NewWindowRequestedEventArgs"/>.</param>
@@ -99,6 +106,7 @@ public static class CoreWebView2NewWindowRequestedEventArgsWrapper
         string ICoreWebView2NewWindowRequestedEventArgsResolver.Name(CoreWebView2NewWindowRequestedEventArgs e) => e.Name;
         CoreWebView2 ICoreWebView2NewWindowRequestedEventArgsResolver.NewWindow(CoreWebView2NewWindowRequestedEventArgs e) => e.NewWindow;
         void ICoreWebView2NewWindowRequestedEventArgsResolver.NewWindow(CoreWebView2NewWindowRequestedEventArgs e, CoreWebView2 newWindow) => e.NewWindow = newWindow;
+        CoreWebView2FrameInfo ICoreWebView2NewWindowRequestedEventArgsResolver.OriginalSourceFrameInfo(CoreWebView2NewWindowRequestedEventArgs e) => e.OriginalSourceFrameInfo;
         string ICoreWebView2NewWindowRequestedEventArgsResolver.Uri(CoreWebView2NewWindowRequestedEventArgs e) => e.Uri;
         CoreWebView2WindowFeatures ICoreWebView2NewWindowRequestedEventArgsResolver.WindowFeatures(CoreWebView2NewWindowRequestedEventArgs e) => e.WindowFeatures;
         Deferral ICoreWebView2NewWindowRequestedEventArgsResolver.GetDeferral(CoreWebView2NewWindowRequestedEventArgs e) => e.GetDeferral();
@@ -159,6 +167,13 @@ public interface ICoreWebView2NewWindowRequestedEventArgsResolver
     /// <param name="e">The requested <see cref="CoreWebView2NewWindowRequestedEventArgs"/>.</param>
     /// <param name="newWindow">The new window as a result of the new window requested.</param>
     void NewWindow(CoreWebView2NewWindowRequestedEventArgs e, CoreWebView2 newWindow);
+
+    /// <summary>
+    /// Gets the frame info of the frame where the new window requested originated.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2NewWindowRequestedEventArgs"/>.</param>
+    /// <returns>The frame info of the frame where the new window requested originated.</returns>
+    CoreWebView2FrameInfo OriginalSourceFrameInfo(CoreWebView2NewWindowRequestedEventArgs e);
 
     /// <summary>
     /// Gets the target uri of the new window request.
