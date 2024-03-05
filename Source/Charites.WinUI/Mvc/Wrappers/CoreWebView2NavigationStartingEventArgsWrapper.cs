@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -70,6 +70,13 @@ public static class CoreWebView2NavigationStartingEventArgsWrapper
     public static ulong NavigationId(this CoreWebView2NavigationStartingEventArgs e) => Resolver.NavigationId(e);
 
     /// <summary>
+    /// Gets the navigation kind of the navigation.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2NavigationStartingEventArgs"/>.</param>
+    /// <returns>The navigation kind of the navigation.</returns>
+    public static CoreWebView2NavigationKind NavigationKind(this CoreWebView2NavigationStartingEventArgs e) => Resolver.NavigationKind(e);
+
+    /// <summary>
     /// Gets the HTTP request headers for the navigation.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2NavigationStartingEventArgs"/>.</param>
@@ -92,6 +99,7 @@ public static class CoreWebView2NavigationStartingEventArgsWrapper
         bool ICoreWebView2NavigationStartingEventArgsResolver.IsRedirected(CoreWebView2NavigationStartingEventArgs e) => e.IsRedirected;
         bool ICoreWebView2NavigationStartingEventArgsResolver.IsUserInitiated(CoreWebView2NavigationStartingEventArgs e) => e.IsUserInitiated;
         ulong ICoreWebView2NavigationStartingEventArgsResolver.NavigationId(CoreWebView2NavigationStartingEventArgs e) => e.NavigationId;
+        CoreWebView2NavigationKind ICoreWebView2NavigationStartingEventArgsResolver.NavigationKind(CoreWebView2NavigationStartingEventArgs e) => e.NavigationKind;
         CoreWebView2HttpRequestHeaders ICoreWebView2NavigationStartingEventArgsResolver.RequestHeaders(CoreWebView2NavigationStartingEventArgs e) => e.RequestHeaders;
         string ICoreWebView2NavigationStartingEventArgsResolver.Uri(CoreWebView2NavigationStartingEventArgs e) => e.Uri;
     }
@@ -152,6 +160,13 @@ public interface ICoreWebView2NavigationStartingEventArgsResolver
     /// <param name="e">The requested <see cref="CoreWebView2NavigationStartingEventArgs"/>.</param>
     /// <returns>The ID of the navigation.</returns>
     ulong NavigationId(CoreWebView2NavigationStartingEventArgs e);
+
+    /// <summary>
+    /// Gets the navigation kind of the navigation.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2NavigationStartingEventArgs"/>.</param>
+    /// <returns>The navigation kind of the navigation.</returns>
+    CoreWebView2NavigationKind NavigationKind(CoreWebView2NavigationStartingEventArgs e);
 
     /// <summary>
     /// Gets the HTTP request headers for the navigation.
