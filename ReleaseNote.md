@@ -1,5 +1,22 @@
 # Release Note
 
+## v1.5.0
+
+### Add
+
+- Add the following event args wrappers:
+  - XamlShutdownCompletedOnThreadEventArgsWrapper.
+  - MapControlMapServiceErrorOccurredEventArgsWrapper.
+  - MapElementClickEventArgsWrapper.
+- Add the IsBrowserAcceleratorKeyEnabled property to the CoreWebView2AcceleratorKeyPressedEventArgsWrapper class.
+- Add the NavigationKind property to the CoreWebView2NavigationStartingEventArgsWrapper class.
+- Add the OriginalSourceFrameInfo property to the CoreWebView2NewWindowRequestedEventArgsWrapper class.
+- Add the CoreWebView2FrameInfoWrapper class.
+
+### Changes
+
+- Change Microsoft.WindowsAppSDK version to 1.5.240227000.
+
 ## v1.4.0
 
 ### Add

@@ -9,14 +9,14 @@
     <UseWinUI>true</UseWinUI>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.4.0</Version>
-    <AssemblyVersion>1.4.0</AssemblyVersion>
-    <FileVersion>1.4.0</FileVersion>
+    <Version>1.5.0</Version>
+    <AssemblyVersion>1.5.0</AssemblyVersion>
+    <FileVersion>1.5.0</FileVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>averrunci</Authors>
     <Description>The class library for Windows UI with Model View Controller.</Description>
-    <Copyright>Copyright (C) 2022-2023 Fievus</Copyright>
+    <Copyright>Copyright (C) 2022-2024 Fievus</Copyright>
     <PackageProjectUrl>https://github.com/averrunci/Charites.WinUI</PackageProjectUrl>
     <PackageTags>winui mvc charites</PackageTags>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
