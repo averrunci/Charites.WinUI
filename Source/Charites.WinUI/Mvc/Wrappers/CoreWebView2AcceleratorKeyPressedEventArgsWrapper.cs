@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -31,6 +31,20 @@ public static class CoreWebView2AcceleratorKeyPressedEventArgsWrapper
     /// <param name="e">The requested <see cref="CoreWebView2AcceleratorKeyPressedEventArgs"/>.</param>
     /// <param name="handled"><c>true</c> if the event is handled by host; otherwise, <c>false</c>.</param>
     public static void Handled(this CoreWebView2AcceleratorKeyPressedEventArgs e, bool handled) => Resolver.Handled(e, handled);
+
+    /// <summary>
+    /// Gets a value that indicates whether the browser handles accelerator keys such as Ctrl+P or F3, etc.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2AcceleratorKeyPressedEventArgs"/>.</param>
+    /// <returns><c>true</c> if the browser handles accelerator keys; otherwise, <c>false</c>.</returns>
+    public static bool IsBrowserAcceleratorKeyEnabled(this CoreWebView2AcceleratorKeyPressedEventArgs e) => Resolver.IsBrowserAcceleratorKeyEnabled(e);
+
+    /// <summary>
+    /// Sets a value that indicates whether the browser handles accelerator keys such as Ctrl+P or F3, etc.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2AcceleratorKeyPressedEventArgs"/>.</param>
+    /// <param name="isBrowserAcceleratorKeyEnabled"><c>true</c> if the browser handles accelerator keys; otherwise, <c>false</c>.</param>
+    public static void IsBrowserAcceleratorKeyEnabled(this CoreWebView2AcceleratorKeyPressedEventArgs e, bool isBrowserAcceleratorKeyEnabled) => Resolver.IsBrowserAcceleratorKeyEnabled(e, isBrowserAcceleratorKeyEnabled);
 
     /// <summary>
     /// Gets the key event kind that caused the event to run.
@@ -66,6 +80,8 @@ public static class CoreWebView2AcceleratorKeyPressedEventArgsWrapper
     {
         bool ICoreWebView2AcceleratorKeyPressedEventArgsResolver.Handled(CoreWebView2AcceleratorKeyPressedEventArgs e) => e.Handled;
         void ICoreWebView2AcceleratorKeyPressedEventArgsResolver.Handled(CoreWebView2AcceleratorKeyPressedEventArgs e, bool handled) => e.Handled = handled;
+        bool ICoreWebView2AcceleratorKeyPressedEventArgsResolver.IsBrowserAcceleratorKeyEnabled(CoreWebView2AcceleratorKeyPressedEventArgs e) => e.IsBrowserAcceleratorKeyEnabled;
+        void ICoreWebView2AcceleratorKeyPressedEventArgsResolver.IsBrowserAcceleratorKeyEnabled(CoreWebView2AcceleratorKeyPressedEventArgs e, bool isBrowserAcceleratorKeyEnabled) => e.IsBrowserAcceleratorKeyEnabled = isBrowserAcceleratorKeyEnabled;
         CoreWebView2KeyEventKind ICoreWebView2AcceleratorKeyPressedEventArgsResolver.KeyEventKind(CoreWebView2AcceleratorKeyPressedEventArgs e) => e.KeyEventKind;
         int ICoreWebView2AcceleratorKeyPressedEventArgsResolver.KeyEventLParam(CoreWebView2AcceleratorKeyPressedEventArgs e) => e.KeyEventLParam;
         CoreWebView2PhysicalKeyStatus ICoreWebView2AcceleratorKeyPressedEventArgsResolver.PhysicalKeyStatus(CoreWebView2AcceleratorKeyPressedEventArgs e) => e.PhysicalKeyStatus;
@@ -91,6 +107,20 @@ public interface ICoreWebView2AcceleratorKeyPressedEventArgsResolver
     /// <param name="e">The requested <see cref="CoreWebView2AcceleratorKeyPressedEventArgs"/>.</param>
     /// <param name="handled"><c>true</c> if the event is handled by host; otherwise, <c>false</c>.</param>
     void Handled(CoreWebView2AcceleratorKeyPressedEventArgs e, bool handled);
+
+    /// <summary>
+    /// Gets a value that indicates whether the browser handles accelerator keys such as Ctrl+P or F3, etc.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2AcceleratorKeyPressedEventArgs"/>.</param>
+    /// <returns><c>true</c> if the browser handles accelerator keys; otherwise, <c>false</c>.</returns>
+    bool IsBrowserAcceleratorKeyEnabled(CoreWebView2AcceleratorKeyPressedEventArgs e);
+
+    /// <summary>
+    /// Sets a value that indicates whether the browser handles accelerator keys such as Ctrl+P or F3, etc.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2AcceleratorKeyPressedEventArgs"/>.</param>
+    /// <param name="isBrowserAcceleratorKeyEnabled"><c>true</c> if the browser handles accelerator keys; otherwise, <c>false</c>.</param>
+    void IsBrowserAcceleratorKeyEnabled(CoreWebView2AcceleratorKeyPressedEventArgs e, bool isBrowserAcceleratorKeyEnabled);
 
     /// <summary>
     /// Gets the key event kind that caused the event to run.
