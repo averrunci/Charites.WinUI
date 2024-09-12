@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -24,6 +24,14 @@ public static class CoreWebView2ProcessFailedEventArgsWrapper
     /// <param name="e">The requested <see cref="CoreWebView2ProcessFailedEventArgs"/>.</param>
     /// <returns>The exit code of the failing process, for telemetry purposes.</returns>
     public static int ExitCode(this CoreWebView2ProcessFailedEventArgs e) => Resolver.ExitCode(e);
+
+    /// <summary>
+    /// When ProcessFailed occurred due to failed Code Integrity check, this property returns the full
+    /// path of the file that was prevented from loading on the system.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2ProcessFailedEventArgs"/>.</param>
+    /// <returns>The full path of the file that was prevented from loading on the system.</returns>
+    public static string FailureSourceModulePath(this CoreWebView2ProcessFailedEventArgs e) => Resolver.FailureSourceModulePath(e);
 
     /// <summary>
     /// Gets the collection of <see cref="CoreWebView2FrameInfo"/> for frames in the <see cref="CoreWebView2"/>
@@ -60,6 +68,7 @@ public static class CoreWebView2ProcessFailedEventArgsWrapper
     private sealed class DefaultCoreWebView2ProcessFailedEventArgsResolver : ICoreWebView2ProcessFailedEventArgsResolver
     {
         int ICoreWebView2ProcessFailedEventArgsResolver.ExitCode(CoreWebView2ProcessFailedEventArgs e) => e.ExitCode;
+        string ICoreWebView2ProcessFailedEventArgsResolver.FailureSourceModulePath(CoreWebView2ProcessFailedEventArgs e) => e.FailureSourceModulePath;
         IReadOnlyList<CoreWebView2FrameInfo> ICoreWebView2ProcessFailedEventArgsResolver.FrameInfosForFailedProcess(CoreWebView2ProcessFailedEventArgs e) => e.FrameInfosForFailedProcess;
         string ICoreWebView2ProcessFailedEventArgsResolver.ProcessDescription(CoreWebView2ProcessFailedEventArgs e) => e.ProcessDescription;
         CoreWebView2ProcessFailedKind ICoreWebView2ProcessFailedEventArgsResolver.ProcessFailedKind(CoreWebView2ProcessFailedEventArgs e) => e.ProcessFailedKind;
@@ -78,6 +87,14 @@ public interface ICoreWebView2ProcessFailedEventArgsResolver
     /// <param name="e">The requested <see cref="CoreWebView2ProcessFailedEventArgs"/>.</param>
     /// <returns>The exit code of the failing process, for telemetry purposes.</returns>
     int ExitCode(CoreWebView2ProcessFailedEventArgs e);
+
+    /// <summary>
+    /// When ProcessFailed occurred due to failed Code Integrity check, this property returns the full
+    /// path of the file that was prevented from loading on the system.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2ProcessFailedEventArgs"/>.</param>
+    /// <returns>The full path of the file that was prevented from loading on the system.</returns>
+    string FailureSourceModulePath(CoreWebView2ProcessFailedEventArgs e);
 
     /// <summary>
     /// Gets the collection of <see cref="CoreWebView2FrameInfo"/> for frames in the <see cref="CoreWebView2"/>
