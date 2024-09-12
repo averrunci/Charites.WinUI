@@ -208,5 +208,10 @@ class SimpleTodoContentSpec : FixtureSteppable
 
         When("to add a to-do item", () => AddTodoContent("Todo Item 4"));
         Then("the AllCompleted should be null", () => SimpleTodoContent.AllCompleted.Value == null);
+
+        When("to remove completed items", () =>
+            SimpleTodoContent.TodoItems.Where(item => item.State.Value is TodoItemState.Completed).ToList().ForEach(item => item.Remove())
+        );
+        Then("the AllCompleted should be false", () => SimpleTodoContent.AllCompleted.Value == false);
     }
 }

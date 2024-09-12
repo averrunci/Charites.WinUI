@@ -42,7 +42,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\SimpleTodo\SimpleTodo.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>FCD9C7D23D593320490C638B7FDCEC1EFFA685FD</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>F4FA78C1B94937653146020C601CC1A95F9979CE</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>SimpleTodo.Package_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
@@ -67,10 +67,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240227000">
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240829007">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756">
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>
