@@ -1,8 +1,7 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using Windows.Foundation;
 using Microsoft.Web.WebView2.Core;
 
 namespace Charites.Windows.Mvc.Wrappers;
@@ -48,11 +47,11 @@ public static class CoreWebView2WebResourceRequestedEventArgsWrapper
     public static void Response(this CoreWebView2WebResourceRequestedEventArgs e, CoreWebView2WebResourceResponse response) => Resolver.Response(e, response);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2WebResourceRequestedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    public static Deferral GetDeferralWrapped(this CoreWebView2WebResourceRequestedEventArgs e) => Resolver.GetDeferral(e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    public static CoreWebView2Deferral GetDeferralWrapped(this CoreWebView2WebResourceRequestedEventArgs e) => Resolver.GetDeferral(e);
 
     private sealed class DefaultCoreWebView2WebResourceRequestedEventArgsResolver : ICoreWebView2WebResourceRequestedEventArgsResolver
     {
@@ -60,7 +59,7 @@ public static class CoreWebView2WebResourceRequestedEventArgsWrapper
         CoreWebView2WebResourceContext ICoreWebView2WebResourceRequestedEventArgsResolver.ResourceContext(CoreWebView2WebResourceRequestedEventArgs e) => e.ResourceContext;
         CoreWebView2WebResourceResponse ICoreWebView2WebResourceRequestedEventArgsResolver.Response(CoreWebView2WebResourceRequestedEventArgs e) => e.Response;
         void ICoreWebView2WebResourceRequestedEventArgsResolver.Response(CoreWebView2WebResourceRequestedEventArgs e, CoreWebView2WebResourceResponse response) => e.Response = response;
-        Deferral ICoreWebView2WebResourceRequestedEventArgsResolver.GetDeferral(CoreWebView2WebResourceRequestedEventArgs e) => e.GetDeferral();
+        CoreWebView2Deferral ICoreWebView2WebResourceRequestedEventArgsResolver.GetDeferral(CoreWebView2WebResourceRequestedEventArgs e) => e.GetDeferral();
     }
 }
 
@@ -98,9 +97,9 @@ public interface ICoreWebView2WebResourceRequestedEventArgsResolver
     void Response(CoreWebView2WebResourceRequestedEventArgs e, CoreWebView2WebResourceResponse response);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2WebResourceRequestedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    Deferral GetDeferral(CoreWebView2WebResourceRequestedEventArgs e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    CoreWebView2Deferral GetDeferral(CoreWebView2WebResourceRequestedEventArgs e);
 }

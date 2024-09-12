@@ -1,8 +1,7 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using Windows.Foundation;
 using Microsoft.Web.WebView2.Core;
 
 namespace Charites.Windows.Mvc.Wrappers;
@@ -55,11 +54,11 @@ public static class CoreWebView2BasicAuthenticationRequestedEventArgsWrapper
     public static string Uri(this CoreWebView2BasicAuthenticationRequestedEventArgs e) => Resolver.Uri(e);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2BasicAuthenticationRequestedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    public static Deferral GetDeferralWrapped(this CoreWebView2BasicAuthenticationRequestedEventArgs e) => Resolver.GetDeferral(e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    public static CoreWebView2Deferral GetDeferralWrapped(this CoreWebView2BasicAuthenticationRequestedEventArgs e) => Resolver.GetDeferral(e);
 
     private sealed class DefaultCoreWebView2BasicAuthenticationRequestedEventArgsResolver : ICoreWebView2BasicAuthenticationRequestedEventArgsResolver
     {
@@ -68,7 +67,7 @@ public static class CoreWebView2BasicAuthenticationRequestedEventArgsWrapper
         string ICoreWebView2BasicAuthenticationRequestedEventArgsResolver.Challenge(CoreWebView2BasicAuthenticationRequestedEventArgs e) => e.Challenge;
         CoreWebView2BasicAuthenticationResponse ICoreWebView2BasicAuthenticationRequestedEventArgsResolver.Response(CoreWebView2BasicAuthenticationRequestedEventArgs e) => e.Response;
         string ICoreWebView2BasicAuthenticationRequestedEventArgsResolver.Uri(CoreWebView2BasicAuthenticationRequestedEventArgs e) => e.Uri;
-        Deferral ICoreWebView2BasicAuthenticationRequestedEventArgsResolver.GetDeferral(CoreWebView2BasicAuthenticationRequestedEventArgs e) => e.GetDeferral();
+        CoreWebView2Deferral ICoreWebView2BasicAuthenticationRequestedEventArgsResolver.GetDeferral(CoreWebView2BasicAuthenticationRequestedEventArgs e) => e.GetDeferral();
     }
 }
 
@@ -113,9 +112,9 @@ public interface ICoreWebView2BasicAuthenticationRequestedEventArgsResolver
     string Uri(CoreWebView2BasicAuthenticationRequestedEventArgs e);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2BasicAuthenticationRequestedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    Deferral GetDeferral(CoreWebView2BasicAuthenticationRequestedEventArgs e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    CoreWebView2Deferral GetDeferral(CoreWebView2BasicAuthenticationRequestedEventArgs e);
 }

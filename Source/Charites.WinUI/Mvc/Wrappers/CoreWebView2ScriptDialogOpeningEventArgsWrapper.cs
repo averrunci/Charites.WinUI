@@ -1,8 +1,7 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using Windows.Foundation;
 using Microsoft.Web.WebView2.Core;
 
 namespace Charites.Windows.Mvc.Wrappers;
@@ -69,11 +68,11 @@ public static class CoreWebView2ScriptDialogOpeningEventArgsWrapper
     public static void AcceptWrapped(this CoreWebView2ScriptDialogOpeningEventArgs e) => Resolver.Accept(e);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2ScriptDialogOpeningEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    public static Deferral GetDeferralWrapped(this CoreWebView2ScriptDialogOpeningEventArgs e) => Resolver.GetDeferral(e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    public static CoreWebView2Deferral GetDeferralWrapped(this CoreWebView2ScriptDialogOpeningEventArgs e) => Resolver.GetDeferral(e);
 
     private sealed class DefaultCoreWebView2ScriptDialogOpeningEventArgsResolver : ICoreWebView2ScriptDialogOpeningEventArgsResolver
     {
@@ -84,7 +83,7 @@ public static class CoreWebView2ScriptDialogOpeningEventArgsWrapper
         void ICoreWebView2ScriptDialogOpeningEventArgsResolver.ResultText(CoreWebView2ScriptDialogOpeningEventArgs e, string resultText) => e.ResultText = resultText;
         string ICoreWebView2ScriptDialogOpeningEventArgsResolver.Uri(CoreWebView2ScriptDialogOpeningEventArgs e) => e.Uri;
         void ICoreWebView2ScriptDialogOpeningEventArgsResolver.Accept(CoreWebView2ScriptDialogOpeningEventArgs e) => e.Accept();
-        Deferral ICoreWebView2ScriptDialogOpeningEventArgsResolver.GetDeferral(CoreWebView2ScriptDialogOpeningEventArgs e) => e.GetDeferral();
+        CoreWebView2Deferral ICoreWebView2ScriptDialogOpeningEventArgsResolver.GetDeferral(CoreWebView2ScriptDialogOpeningEventArgs e) => e.GetDeferral();
     }
 }
 
@@ -143,9 +142,9 @@ public interface ICoreWebView2ScriptDialogOpeningEventArgsResolver
     void Accept(CoreWebView2ScriptDialogOpeningEventArgs e);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2ScriptDialogOpeningEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    Deferral GetDeferral(CoreWebView2ScriptDialogOpeningEventArgs e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    CoreWebView2Deferral GetDeferral(CoreWebView2ScriptDialogOpeningEventArgs e);
 }

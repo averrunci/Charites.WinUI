@@ -1,8 +1,7 @@
-﻿// Copyright (C) 2023 Fievus
+﻿// Copyright (C) 2023-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using Windows.Foundation;
 using Microsoft.Web.WebView2.Core;
 
 namespace Charites.Windows.Mvc.Wrappers;
@@ -55,11 +54,11 @@ public static class CoreWebView2LaunchingExternalUriSchemeEventArgsWrapper
     public static string Uri(this CoreWebView2LaunchingExternalUriSchemeEventArgs e) => Resolver.Uri(e);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object and put the event into a deferred state.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object and put the event into a deferred state.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2LaunchingExternalUriSchemeEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    public static Deferral GetDeferralWrapped(this CoreWebView2LaunchingExternalUriSchemeEventArgs e) => Resolver.GetDeferralWrapped(e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    public static CoreWebView2Deferral GetDeferralWrapped(this CoreWebView2LaunchingExternalUriSchemeEventArgs e) => Resolver.GetDeferralWrapped(e);
 
     private sealed class DefaultCoreWebView2LaunchingExternalUriSchemeEventArgsResolver : ICoreWebView2LaunchingExternalUriSchemeEventArgsResolver
     {
@@ -68,7 +67,7 @@ public static class CoreWebView2LaunchingExternalUriSchemeEventArgsWrapper
         string ICoreWebView2LaunchingExternalUriSchemeEventArgsResolver.InitiatingOrigin(CoreWebView2LaunchingExternalUriSchemeEventArgs e) => e.InitiatingOrigin;
         bool ICoreWebView2LaunchingExternalUriSchemeEventArgsResolver.IsUserInitiated(CoreWebView2LaunchingExternalUriSchemeEventArgs e) => e.IsUserInitiated;
         string ICoreWebView2LaunchingExternalUriSchemeEventArgsResolver.Uri(CoreWebView2LaunchingExternalUriSchemeEventArgs e) => e.Uri;
-        Deferral ICoreWebView2LaunchingExternalUriSchemeEventArgsResolver.GetDeferralWrapped(CoreWebView2LaunchingExternalUriSchemeEventArgs e) => e.GetDeferral();
+        CoreWebView2Deferral ICoreWebView2LaunchingExternalUriSchemeEventArgsResolver.GetDeferralWrapped(CoreWebView2LaunchingExternalUriSchemeEventArgs e) => e.GetDeferral();
     }
 }
 
@@ -113,9 +112,9 @@ public interface ICoreWebView2LaunchingExternalUriSchemeEventArgsResolver
     string Uri(CoreWebView2LaunchingExternalUriSchemeEventArgs e);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object and put the event into a deferred state.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object and put the event into a deferred state.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2LaunchingExternalUriSchemeEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    Deferral GetDeferralWrapped(CoreWebView2LaunchingExternalUriSchemeEventArgs e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    CoreWebView2Deferral GetDeferralWrapped(CoreWebView2LaunchingExternalUriSchemeEventArgs e);
 }

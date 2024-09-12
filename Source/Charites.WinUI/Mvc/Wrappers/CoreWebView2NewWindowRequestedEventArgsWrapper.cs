@@ -2,7 +2,6 @@
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using Windows.Foundation;
 using Microsoft.Web.WebView2.Core;
 
 namespace Charites.Windows.Mvc.Wrappers;
@@ -92,11 +91,11 @@ public static class CoreWebView2NewWindowRequestedEventArgsWrapper
     public static CoreWebView2WindowFeatures WindowFeatures(this CoreWebView2NewWindowRequestedEventArgs e) => Resolver.WindowFeatures(e);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2NewWindowRequestedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    public static Deferral GetDeferralWrapped(this CoreWebView2NewWindowRequestedEventArgs e) => Resolver.GetDeferral(e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    public static CoreWebView2Deferral GetDeferralWrapped(this CoreWebView2NewWindowRequestedEventArgs e) => Resolver.GetDeferral(e);
 
     private sealed class DefaultCoreWebView2NewWindowRequestedEventArgsResolver : ICoreWebView2NewWindowRequestedEventArgsResolver
     {
@@ -109,7 +108,7 @@ public static class CoreWebView2NewWindowRequestedEventArgsWrapper
         CoreWebView2FrameInfo ICoreWebView2NewWindowRequestedEventArgsResolver.OriginalSourceFrameInfo(CoreWebView2NewWindowRequestedEventArgs e) => e.OriginalSourceFrameInfo;
         string ICoreWebView2NewWindowRequestedEventArgsResolver.Uri(CoreWebView2NewWindowRequestedEventArgs e) => e.Uri;
         CoreWebView2WindowFeatures ICoreWebView2NewWindowRequestedEventArgsResolver.WindowFeatures(CoreWebView2NewWindowRequestedEventArgs e) => e.WindowFeatures;
-        Deferral ICoreWebView2NewWindowRequestedEventArgsResolver.GetDeferral(CoreWebView2NewWindowRequestedEventArgs e) => e.GetDeferral();
+        CoreWebView2Deferral ICoreWebView2NewWindowRequestedEventArgsResolver.GetDeferral(CoreWebView2NewWindowRequestedEventArgs e) => e.GetDeferral();
     }
 }
 
@@ -191,9 +190,9 @@ public interface ICoreWebView2NewWindowRequestedEventArgsResolver
     CoreWebView2WindowFeatures WindowFeatures(CoreWebView2NewWindowRequestedEventArgs e);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2NewWindowRequestedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    Deferral GetDeferral(CoreWebView2NewWindowRequestedEventArgs e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    CoreWebView2Deferral GetDeferral(CoreWebView2NewWindowRequestedEventArgs e);
 }

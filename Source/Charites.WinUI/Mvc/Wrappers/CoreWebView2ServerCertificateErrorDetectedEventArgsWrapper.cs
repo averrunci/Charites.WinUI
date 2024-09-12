@@ -1,8 +1,7 @@
-﻿// Copyright (C) 2023 Fievus
+﻿// Copyright (C) 2023-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using Windows.Foundation;
 using Microsoft.Web.WebView2.Core;
 
 namespace Charites.Windows.Mvc.Wrappers;
@@ -55,11 +54,11 @@ public static class CoreWebView2ServerCertificateErrorDetectedEventArgsWrapper
     public static CoreWebView2Certificate ServerCertificate(this CoreWebView2ServerCertificateErrorDetectedEventArgs e) => Resolver.ServerCertificate(e);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2ServerCertificateErrorDetectedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    public static Deferral GetDeferralWrapped(this CoreWebView2PermissionRequestedEventArgs e) => Resolver.GetDeferral(e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    public static CoreWebView2Deferral GetDeferralWrapped(this CoreWebView2PermissionRequestedEventArgs e) => Resolver.GetDeferral(e);
 
     private sealed class DefaultCoreWebView2ServerCertificateErrorDetectedEventArgsResolver : ICoreWebView2ServerCertificateErrorDetectedEventArgsResolver
     {
@@ -68,7 +67,7 @@ public static class CoreWebView2ServerCertificateErrorDetectedEventArgsWrapper
         CoreWebView2WebErrorStatus ICoreWebView2ServerCertificateErrorDetectedEventArgsResolver.ErrorStatus(CoreWebView2ServerCertificateErrorDetectedEventArgs e) => e.ErrorStatus;
         string ICoreWebView2ServerCertificateErrorDetectedEventArgsResolver.RequestUri(CoreWebView2ServerCertificateErrorDetectedEventArgs e) => e.RequestUri;
         CoreWebView2Certificate ICoreWebView2ServerCertificateErrorDetectedEventArgsResolver.ServerCertificate(CoreWebView2ServerCertificateErrorDetectedEventArgs e) => e.ServerCertificate;
-        Deferral ICoreWebView2ServerCertificateErrorDetectedEventArgsResolver.GetDeferral(CoreWebView2PermissionRequestedEventArgs e) => e.GetDeferral();
+        CoreWebView2Deferral ICoreWebView2ServerCertificateErrorDetectedEventArgsResolver.GetDeferral(CoreWebView2PermissionRequestedEventArgs e) => e.GetDeferral();
     }
 }
 
@@ -113,9 +112,9 @@ public interface ICoreWebView2ServerCertificateErrorDetectedEventArgsResolver
     CoreWebView2Certificate ServerCertificate(CoreWebView2ServerCertificateErrorDetectedEventArgs e);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2ServerCertificateErrorDetectedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    Deferral GetDeferral(CoreWebView2PermissionRequestedEventArgs e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    CoreWebView2Deferral GetDeferral(CoreWebView2PermissionRequestedEventArgs e);
 }

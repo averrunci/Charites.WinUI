@@ -1,8 +1,7 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using Windows.Foundation;
 using Microsoft.Web.WebView2.Core;
 
 namespace Charites.Windows.Mvc.Wrappers;
@@ -69,11 +68,11 @@ public static class CoreWebView2DownloadStartingEventArgsWrapper
     public static void ResultFilePath(this CoreWebView2DownloadStartingEventArgs e, string resultFilePath) => Resolver.ResultFilePath(e, resultFilePath);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2DownloadStartingEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    public static Deferral GetDeferralWrapped(this CoreWebView2DownloadStartingEventArgs e) => Resolver.GetDeferral(e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    public static CoreWebView2Deferral GetDeferralWrapped(this CoreWebView2DownloadStartingEventArgs e) => Resolver.GetDeferral(e);
 
     private sealed class DefaultCoreWebView2DownloadStartingEventArgsResolver : ICoreWebView2DownloadStartingEventArgsResolver
     {
@@ -84,7 +83,7 @@ public static class CoreWebView2DownloadStartingEventArgsWrapper
         void ICoreWebView2DownloadStartingEventArgsResolver.Handled(CoreWebView2DownloadStartingEventArgs e, bool handled) => e.Handled = handled;
         string ICoreWebView2DownloadStartingEventArgsResolver.ResultFilePath(CoreWebView2DownloadStartingEventArgs e) => e.ResultFilePath;
         void ICoreWebView2DownloadStartingEventArgsResolver.ResultFilePath(CoreWebView2DownloadStartingEventArgs e, string resultFilePath) => e.ResultFilePath = resultFilePath;
-        Deferral ICoreWebView2DownloadStartingEventArgsResolver.GetDeferral(CoreWebView2DownloadStartingEventArgs e) => e.GetDeferral();
+        CoreWebView2Deferral ICoreWebView2DownloadStartingEventArgsResolver.GetDeferral(CoreWebView2DownloadStartingEventArgs e) => e.GetDeferral();
     }
 }
 
@@ -143,9 +142,9 @@ public interface ICoreWebView2DownloadStartingEventArgsResolver
     void ResultFilePath(CoreWebView2DownloadStartingEventArgs e, string resultFilePath);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2DownloadStartingEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    Deferral GetDeferral(CoreWebView2DownloadStartingEventArgs e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    CoreWebView2Deferral GetDeferral(CoreWebView2DownloadStartingEventArgs e);
 }

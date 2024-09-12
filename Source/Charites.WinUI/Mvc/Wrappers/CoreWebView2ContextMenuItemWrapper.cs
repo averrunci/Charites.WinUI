@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -42,7 +42,7 @@ public static class CoreWebView2ContextMenuItemWrapper
     /// The Icon for the <see cref="CoreWebView2ContextMenuItem"/> in PNG, Bitmap or SVG formats
     /// in the form of an IStream.
     /// </returns>
-    public static IRandomAccessStream Icon(this CoreWebView2ContextMenuItem menuItem) => Resolver.Icon(menuItem);
+    public static Stream Icon(this CoreWebView2ContextMenuItem menuItem) => Resolver.Icon(menuItem);
 
     /// <summary>
     /// Gets a value that indicates whether the checked property of the <see cref="CoreWebView2ContextMenuItem"/>.
@@ -114,7 +114,7 @@ public static class CoreWebView2ContextMenuItemWrapper
     {
         IList<CoreWebView2ContextMenuItem> ICoreWebView2ContextMenuItemResolver.Children(CoreWebView2ContextMenuItem menuItem) => menuItem.Children;
         int ICoreWebView2ContextMenuItemResolver.CommandId(CoreWebView2ContextMenuItem menuItem) => menuItem.CommandId;
-        IRandomAccessStream ICoreWebView2ContextMenuItemResolver.Icon(CoreWebView2ContextMenuItem menuItem) => menuItem.Icon;
+        Stream ICoreWebView2ContextMenuItemResolver.Icon(CoreWebView2ContextMenuItem menuItem) => menuItem.Icon;
         bool ICoreWebView2ContextMenuItemResolver.IsChecked(CoreWebView2ContextMenuItem menuItem) => menuItem.IsChecked;
         void ICoreWebView2ContextMenuItemResolver.IsChecked(CoreWebView2ContextMenuItem menuItem, bool isChecked) => menuItem.IsChecked = isChecked;
         bool ICoreWebView2ContextMenuItemResolver.IsEnabled(CoreWebView2ContextMenuItem menuItem) => menuItem.IsEnabled;
@@ -154,7 +154,7 @@ public interface ICoreWebView2ContextMenuItemResolver
     /// The Icon for the <see cref="CoreWebView2ContextMenuItem"/> in PNG, Bitmap or SVG formats
     /// in the form of an IStream.
     /// </returns>
-    IRandomAccessStream Icon(CoreWebView2ContextMenuItem menuItem);
+    Stream Icon(CoreWebView2ContextMenuItem menuItem);
 
     /// <summary>
     /// Gets a value that indicates whether the checked property of the <see cref="CoreWebView2ContextMenuItem"/>.

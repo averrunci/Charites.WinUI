@@ -1,8 +1,7 @@
-﻿// Copyright (C) 2022-2023 Fievus
+﻿// Copyright (C) 2022-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using Windows.Foundation;
 using Microsoft.Web.WebView2.Core;
 
 namespace Charites.Windows.Mvc.Wrappers;
@@ -99,11 +98,11 @@ public static class CoreWebView2PermissionRequestedEventArgsWrapper
     public static string Uri(this CoreWebView2PermissionRequestedEventArgs e) => Resolver.Uri(e);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2PermissionRequestedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    public static Deferral GetDeferralWrapped(this CoreWebView2PermissionRequestedEventArgs e) => Resolver.GetDeferral(e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    public static CoreWebView2Deferral GetDeferralWrapped(this CoreWebView2PermissionRequestedEventArgs e) => Resolver.GetDeferral(e);
 
     private sealed class DefaultCoreWebView2PermissionRequestedEventArgsResolver : ICoreWebView2PermissionRequestedEventArgsResolver
     {
@@ -116,7 +115,7 @@ public static class CoreWebView2PermissionRequestedEventArgsWrapper
         CoreWebView2PermissionState ICoreWebView2PermissionRequestedEventArgsResolver.State(CoreWebView2PermissionRequestedEventArgs e) => e.State;
         void ICoreWebView2PermissionRequestedEventArgsResolver.State(CoreWebView2PermissionRequestedEventArgs e, CoreWebView2PermissionState state) => e.State = state;
         string ICoreWebView2PermissionRequestedEventArgsResolver.Uri(CoreWebView2PermissionRequestedEventArgs e) => e.Uri;
-        Deferral ICoreWebView2PermissionRequestedEventArgsResolver.GetDeferral(CoreWebView2PermissionRequestedEventArgs e) => e.GetDeferral();
+        CoreWebView2Deferral ICoreWebView2PermissionRequestedEventArgsResolver.GetDeferral(CoreWebView2PermissionRequestedEventArgs e) => e.GetDeferral();
     }
 }
 
@@ -205,9 +204,9 @@ public interface ICoreWebView2PermissionRequestedEventArgsResolver
     string Uri(CoreWebView2PermissionRequestedEventArgs e);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2PermissionRequestedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    Deferral GetDeferral(CoreWebView2PermissionRequestedEventArgs e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    CoreWebView2Deferral GetDeferral(CoreWebView2PermissionRequestedEventArgs e);
 }

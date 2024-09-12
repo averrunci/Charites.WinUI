@@ -1,8 +1,8 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using Windows.Foundation;
+using System.Drawing;
 using Microsoft.Web.WebView2.Core;
 
 namespace Charites.Windows.Mvc.Wrappers;
@@ -28,7 +28,7 @@ public static class CoreWebView2ContextMenuRequestedEventArgsWrapper
 
     /// <summary>
     /// Gets a value that indicates whether the <see cref="CoreWebView2.ContextMenuRequested"/> event is handled by host
-    /// after the event handler completes or after the deferral is completed if there is a taken <see cref="Deferral"/>.
+    /// after the event handler completes or after the deferral is completed if there is a taken <see cref="CoreWebView2Deferral"/>.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2ContextMenuRequestedEventArgs"/>.</param>
     /// <returns>
@@ -38,7 +38,7 @@ public static class CoreWebView2ContextMenuRequestedEventArgsWrapper
 
     /// <summary>
     /// Sets a value that indicates whether the <see cref="CoreWebView2.ContextMenuRequested"/> event is handled by host
-    /// after the event handler completes or after the deferral is completed if there is a taken <see cref="Deferral"/>.
+    /// after the event handler completes or after the deferral is completed if there is a taken <see cref="CoreWebView2Deferral"/>.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2ContextMenuRequestedEventArgs"/>.</param>
     /// <param name="handled">
@@ -82,11 +82,11 @@ public static class CoreWebView2ContextMenuRequestedEventArgsWrapper
     public static void SelectedCommandId(this CoreWebView2ContextMenuRequestedEventArgs e, int selectedCommandId) => Resolver.SelectedCommandId(e, selectedCommandId);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2ContextMenuRequestedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    public static Deferral GetDeferralWrapped(this CoreWebView2ContextMenuRequestedEventArgs e) => Resolver.GetDeferral(e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    public static CoreWebView2Deferral GetDeferralWrapped(this CoreWebView2ContextMenuRequestedEventArgs e) => Resolver.GetDeferral(e);
 
     private sealed class DefaultCoreWebView2ContextMenuRequestedEventArgsResolver : ICoreWebView2ContextMenuRequestedEventArgsResolver
     {
@@ -97,7 +97,7 @@ public static class CoreWebView2ContextMenuRequestedEventArgsWrapper
         IList<CoreWebView2ContextMenuItem> ICoreWebView2ContextMenuRequestedEventArgsResolver.MenuItems(CoreWebView2ContextMenuRequestedEventArgs e) => e.MenuItems;
         int ICoreWebView2ContextMenuRequestedEventArgsResolver.SelectedCommandId(CoreWebView2ContextMenuRequestedEventArgs e) => e.SelectedCommandId;
         void ICoreWebView2ContextMenuRequestedEventArgsResolver.SelectedCommandId(CoreWebView2ContextMenuRequestedEventArgs e, int selectedCommandId) => e.SelectedCommandId = selectedCommandId;
-        Deferral ICoreWebView2ContextMenuRequestedEventArgsResolver.GetDeferral(CoreWebView2ContextMenuRequestedEventArgs e) => e.GetDeferral();
+        CoreWebView2Deferral ICoreWebView2ContextMenuRequestedEventArgsResolver.GetDeferral(CoreWebView2ContextMenuRequestedEventArgs e) => e.GetDeferral();
     }
 }
 
@@ -115,7 +115,7 @@ public interface ICoreWebView2ContextMenuRequestedEventArgsResolver
 
     /// <summary>
     /// Gets a value that indicates whether the <see cref="CoreWebView2.ContextMenuRequested"/> event is handled by host
-    /// after the event handler completes or after the deferral is completed if there is a taken <see cref="Deferral"/>.
+    /// after the event handler completes or after the deferral is completed if there is a taken <see cref="CoreWebView2Deferral"/>.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2ContextMenuRequestedEventArgs"/>.</param>
     /// <returns>
@@ -125,7 +125,7 @@ public interface ICoreWebView2ContextMenuRequestedEventArgsResolver
 
     /// <summary>
     /// Sets a value that indicates whether the <see cref="CoreWebView2.ContextMenuRequested"/> event is handled by host
-    /// after the event handler completes or after the deferral is completed if there is a taken <see cref="Deferral"/>.
+    /// after the event handler completes or after the deferral is completed if there is a taken <see cref="CoreWebView2Deferral"/>.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2ContextMenuRequestedEventArgs"/>.</param>
     /// <param name="handled">
@@ -169,9 +169,9 @@ public interface ICoreWebView2ContextMenuRequestedEventArgsResolver
     void SelectedCommandId(CoreWebView2ContextMenuRequestedEventArgs e, int selectedCommandId);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2ContextMenuRequestedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    Deferral GetDeferral(CoreWebView2ContextMenuRequestedEventArgs e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    CoreWebView2Deferral GetDeferral(CoreWebView2ContextMenuRequestedEventArgs e);
 }

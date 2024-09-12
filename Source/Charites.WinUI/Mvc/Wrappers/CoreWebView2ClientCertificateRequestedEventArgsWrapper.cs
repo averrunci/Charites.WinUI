@@ -1,8 +1,7 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2024 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using Windows.Foundation;
 using Microsoft.Web.WebView2.Core;
 
 namespace Charites.Windows.Mvc.Wrappers;
@@ -101,11 +100,11 @@ public static class CoreWebView2ClientCertificateRequestedEventArgsWrapper
     public static void SelectedCertificate(this CoreWebView2ClientCertificateRequestedEventArgs e, CoreWebView2ClientCertificate selectedCertificate) => Resolver.SelectedCertificate(e, selectedCertificate);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2ClientCertificateRequestedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    public static Deferral GetDeferralWrapped(this CoreWebView2ClientCertificateRequestedEventArgs e) => Resolver.GetDeferral(e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    public static CoreWebView2Deferral GetDeferralWrapped(this CoreWebView2ClientCertificateRequestedEventArgs e) => Resolver.GetDeferral(e);
 
     private sealed class DefaultCoreWebView2ClientCertificateRequestedEventArgsResolver : ICoreWebView2ClientCertificateRequestedEventArgsResolver
     {
@@ -120,7 +119,7 @@ public static class CoreWebView2ClientCertificateRequestedEventArgsWrapper
         int ICoreWebView2ClientCertificateRequestedEventArgsResolver.Port(CoreWebView2ClientCertificateRequestedEventArgs e) => e.Port;
         CoreWebView2ClientCertificate ICoreWebView2ClientCertificateRequestedEventArgsResolver.SelectedCertificate(CoreWebView2ClientCertificateRequestedEventArgs e) => e.SelectedCertificate;
         void ICoreWebView2ClientCertificateRequestedEventArgsResolver.SelectedCertificate(CoreWebView2ClientCertificateRequestedEventArgs e, CoreWebView2ClientCertificate selectedCertificate) => e.SelectedCertificate = selectedCertificate;
-        Deferral ICoreWebView2ClientCertificateRequestedEventArgsResolver.GetDeferral(CoreWebView2ClientCertificateRequestedEventArgs e) => e.GetDeferral();
+        CoreWebView2Deferral ICoreWebView2ClientCertificateRequestedEventArgsResolver.GetDeferral(CoreWebView2ClientCertificateRequestedEventArgs e) => e.GetDeferral();
     }
 }
 
@@ -211,9 +210,9 @@ public interface ICoreWebView2ClientCertificateRequestedEventArgsResolver
     void SelectedCertificate(CoreWebView2ClientCertificateRequestedEventArgs e, CoreWebView2ClientCertificate selectedCertificate);
 
     /// <summary>
-    /// Gets a <see cref="Deferral"/> object.
+    /// Gets a <see cref="CoreWebView2Deferral"/> object.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2ClientCertificateRequestedEventArgs"/>.</param>
-    /// <returns>A <see cref="Deferral"/> object.</returns>
-    Deferral GetDeferral(CoreWebView2ClientCertificateRequestedEventArgs e);
+    /// <returns>A <see cref="CoreWebView2Deferral"/> object.</returns>
+    CoreWebView2Deferral GetDeferral(CoreWebView2ClientCertificateRequestedEventArgs e);
 }
