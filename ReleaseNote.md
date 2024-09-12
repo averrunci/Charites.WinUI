@@ -1,5 +1,23 @@
 # Release Note
 
+## v1.6.0
+
+### Add
+
+- Add the CoreWebView2DeferralWrapper class.
+- Add the following event args wrappers:
+  - CoreWebView2NonClientRegionChangedEventArgsWrapper.
+  - TabViewExternalTornOutTabsDroppedEventArgsWrapper.
+  - TabViewExternalTornOutTabsDroppingEventArgsWrapper.
+  - TabViewTabTearOutRequestedEventArgsWrapper.
+  - TabViewTabTearOutWindowRequestedEventArgs.
+- Add the FailureSourceModulePath property to the CoreWebView2ProcessFailedEventArgsWrapper class.
+- Add the RequestedSourceKind property to the CoreWebView2WebResourceRequestedEventArgsWrapper class.
+
+### Changes
+
+- Change Microsoft.WindowsAppSDK version to 1.6.240829007.
+
 ## v1.5.0
 
 ### Add
