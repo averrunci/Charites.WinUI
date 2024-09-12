@@ -26,6 +26,13 @@ public static class CoreWebView2WebResourceRequestedEventArgsWrapper
     public static CoreWebView2WebResourceRequest Request(this CoreWebView2WebResourceRequestedEventArgs e) => Resolver.Request(e);
 
     /// <summary>
+    /// Gets the source of web resource request.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2WebResourceRequestedEventArgs"/>.</param>
+    /// <returns>The source of the web resource request.</returns>
+    public static CoreWebView2WebResourceRequestSourceKinds RequestedSourceKind(this CoreWebView2WebResourceRequestedEventArgs e) => Resolver.RequestedSourceKind(e);
+
+    /// <summary>
     /// Gets the web resource request context.
     /// </summary>
     /// <param name="e">The requested <see cref="CoreWebView2WebResourceRequestedEventArgs"/>.</param>
@@ -56,6 +63,7 @@ public static class CoreWebView2WebResourceRequestedEventArgsWrapper
     private sealed class DefaultCoreWebView2WebResourceRequestedEventArgsResolver : ICoreWebView2WebResourceRequestedEventArgsResolver
     {
         CoreWebView2WebResourceRequest ICoreWebView2WebResourceRequestedEventArgsResolver.Request(CoreWebView2WebResourceRequestedEventArgs e) => e.Request;
+        CoreWebView2WebResourceRequestSourceKinds ICoreWebView2WebResourceRequestedEventArgsResolver.RequestedSourceKind(CoreWebView2WebResourceRequestedEventArgs e) => e.RequestedSourceKind;
         CoreWebView2WebResourceContext ICoreWebView2WebResourceRequestedEventArgsResolver.ResourceContext(CoreWebView2WebResourceRequestedEventArgs e) => e.ResourceContext;
         CoreWebView2WebResourceResponse ICoreWebView2WebResourceRequestedEventArgsResolver.Response(CoreWebView2WebResourceRequestedEventArgs e) => e.Response;
         void ICoreWebView2WebResourceRequestedEventArgsResolver.Response(CoreWebView2WebResourceRequestedEventArgs e, CoreWebView2WebResourceResponse response) => e.Response = response;
@@ -74,6 +82,13 @@ public interface ICoreWebView2WebResourceRequestedEventArgsResolver
     /// <param name="e">The requested <see cref="CoreWebView2WebResourceRequestedEventArgs"/>.</param>
     /// <returns>The web resource request.</returns>
     CoreWebView2WebResourceRequest Request(CoreWebView2WebResourceRequestedEventArgs e);
+
+    /// <summary>
+    /// Gets the source of web resource request.
+    /// </summary>
+    /// <param name="e">The requested <see cref="CoreWebView2WebResourceRequestedEventArgs"/>.</param>
+    /// <returns>The source of the web resource request.</returns>
+    CoreWebView2WebResourceRequestSourceKinds RequestedSourceKind(CoreWebView2WebResourceRequestedEventArgs e);
 
     /// <summary>
     /// Gets the web resource request context.
