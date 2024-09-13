@@ -32,4 +32,8 @@
     <PackageReference Include="Charites" Version="2.2.0" />
     <PackageReference Include="Charites.Bindings" Version="2.2.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Binary\Release\net6.0-windows10.0.19041.0\Charites.WinUI\runtimes\**" Pack="true" PackagePath="lib\net6.0-windows10.0.19041\Charites.WinUI\runtimes\"/>
+  </ItemGroup>
 </Project>
