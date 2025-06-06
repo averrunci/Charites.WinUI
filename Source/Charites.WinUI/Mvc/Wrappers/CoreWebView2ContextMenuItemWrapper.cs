@@ -1,8 +1,7 @@
-﻿// Copyright (C) 2022-2024 Fievus
+﻿// Copyright (C) 2022-2025 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-using Windows.Storage.Streams;
 using Microsoft.Web.WebView2.Core;
 
 namespace Charites.Windows.Mvc.Wrappers;
