@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2025 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -30,7 +30,7 @@ class SimpleTodoContentControllerSpec : FixtureSteppable
     [Example("The IsChecked of the AllCompletedCheckBox is set to null when the AllCompleted of the content does not have a value")]
     async Task Ex01()
     {
-        await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() =>
+        await CarnaWinUIRunner.InvokeAsync(() =>
         {
             var allCompletedCheckBox = new CheckBox { Name = "AllCompletedCheckBox" };
             WinUIController.SetElement(allCompletedCheckBox, Controller, true);

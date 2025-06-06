@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2025 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -27,7 +27,7 @@ class SimpleLoginDemoHostControllerSpec : FixtureSteppable
     [Example("Navigates to an initial content when the SimpleLoginDemoHost is loaded")]
     async Task Ex01()
     {
-        await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() =>
+        await CarnaWinUIRunner.InvokeAsync(() =>
         {
             var windowProvider = Substitute.For<ISimpleLoginDemoWindowProvider>();
             windowProvider.Window.Returns(new Window());

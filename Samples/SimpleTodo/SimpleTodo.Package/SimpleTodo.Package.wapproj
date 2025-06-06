@@ -38,11 +38,11 @@
     <ProjectGuid>6a3ad0cd-e921-464f-8c3b-b78c1dc88865</ProjectGuid>
     <TargetPlatformVersion>10.0.20348.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-    <AssetTargetFallback>net6.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
+    <AssetTargetFallback>net8.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\SimpleTodo\SimpleTodo.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>F4FA78C1B94937653146020C601CC1A95F9979CE</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>C3DB5BB1843C30F0020FEFC3CCF5223FBB2A5245</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>SimpleTodo.Package_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
@@ -63,14 +63,14 @@
   <ItemGroup>
     <ProjectReference Include="..\SimpleTodo\SimpleTodo.csproj">
       <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
-      <PublishProfile>Properties\PublishProfiles\win10-$(Platform).pubxml</PublishProfile>
+      <PublishProfile>Properties\PublishProfiles\win-$(Platform).pubxml</PublishProfile>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240829007">
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250513003">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1">
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>

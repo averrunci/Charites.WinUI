@@ -38,11 +38,11 @@
     <ProjectGuid>d9901a63-db49-433b-8cdb-ce7ce325b6d9</ProjectGuid>
     <TargetPlatformVersion>10.0.20348.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-    <AssetTargetFallback>net6.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
+    <AssetTargetFallback>net8.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\SimpleLoginDemo\SimpleLoginDemo.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>B8B218B3F2581546CFB865A98525ECF14F077CF3</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>CB147546B80276653D2ADD1A6A1575806EC66406</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>SimpleLoginDemo.Package_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
@@ -67,10 +67,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240829007">
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250513003">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1">
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>

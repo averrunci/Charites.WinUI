@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2025 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -36,7 +36,7 @@ class TodoItemControllerSpec : FixtureSteppable
     [Example("Changes the visual state when the pointer is over an element")]
     async Task Ex01()
     {
-        await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() =>
+        await CarnaWinUIRunner.InvokeAsync(() =>
         {
             var root = new UserControl { Name = "Root" };
             Grid element = default!;
@@ -78,7 +78,7 @@ class TodoItemControllerSpec : FixtureSteppable
     [Example("Switches a content to an edit mode when the element is double tapped")]
     async Task Ex02()
     {
-        await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() =>
+        await CarnaWinUIRunner.InvokeAsync(() =>
         {
             When("the element is double tapped", () =>
                 WinUIController.EventHandlersOf(Controller)
@@ -95,7 +95,7 @@ class TodoItemControllerSpec : FixtureSteppable
     [Example("Completes an edit when the Enter key is pressed")]
     async Task Ex03()
     {
-        await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() =>
+        await CarnaWinUIRunner.InvokeAsync(() =>
         {
             When("the element is double tapped", () =>
                 WinUIController.EventHandlersOf(Controller)
@@ -121,7 +121,7 @@ class TodoItemControllerSpec : FixtureSteppable
     [Example("Completes an edit when the focus is lost")]
     async Task Ex04()
     {
-        await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() =>
+        await CarnaWinUIRunner.InvokeAsync(() =>
         {
             When("the element is double tapped", () =>
                 WinUIController.EventHandlersOf(Controller)
@@ -145,7 +145,7 @@ class TodoItemControllerSpec : FixtureSteppable
     [Example("Cancels an edit when the Esc key is pressed")]
     async Task Ex05()
     {
-        await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() =>
+        await CarnaWinUIRunner.InvokeAsync(() =>
         {
             When("the element is double tapped", () =>
                 WinUIController.EventHandlersOf(Controller)

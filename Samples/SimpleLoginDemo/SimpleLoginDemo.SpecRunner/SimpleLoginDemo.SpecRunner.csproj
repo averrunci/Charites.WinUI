@@ -5,29 +5,29 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-    <WindowsSdkPackageVersion>10.0.19041.38</WindowsSdkPackageVersion>
+    <WindowsSdkPackageVersion>10.0.19041.56</WindowsSdkPackageVersion>
     <RootNamespace>Charites.Windows.Samples.SimpleLoginDemo.SpecRunner</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x86;x64;arm64</Platforms>
-    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
-    <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+    <PublishProfile>win-$(Platform).pubxml</PublishProfile>
     <UseWinUI>true</UseWinUI>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
-    <PackageCertificateThumbprint>7284D4C0FA7EED8B5B61198016F63A1754F612A7</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>9F2ED3B36C77DDE38B6A5AE656C32BC9DAC752BA</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>SimpleLoginDemo.SpecRunner_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <Version>1.6.0</Version>
-    <AssemblyVersion>1.6.0</AssemblyVersion>
-    <FileVersion>1.6.0</FileVersion>
+    <Version>1.7.0</Version>
+    <AssemblyVersion>1.7.0</AssemblyVersion>
+    <FileVersion>1.7.0</FileVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>averrunci</Authors>
     <Description>The sample app specification runner.</Description>
-    <Copyright>Copyright (C) 2022-2024 Fievus</Copyright>
+    <Copyright>Copyright (C) 2022-2025 Fievus</Copyright>
     <PackageProjectUrl>https://github.com/averrunci/Charites.WinUI</PackageProjectUrl>
     <PackageTags>winui mvc charites</PackageTags>
   </PropertyGroup>
@@ -43,10 +43,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240829007" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250513003" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188" />
     <Manifest Include="$(ApplicationManifest)" />
-    <PackageReference Include="Carna.WinUIRunner" Version="2.1.1" />
+    <PackageReference Include="Carna.WinUIRunner" Version="3.0.0" />
   </ItemGroup>
 
   <!-- Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
