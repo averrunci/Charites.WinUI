@@ -20,14 +20,14 @@
     <PackageCertificateThumbprint>ADB6B674C953474C91E33DFDE34328B084696CAF</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>Charites.WinUI.Spec_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <Version>1.6.1</Version>
-    <AssemblyVersion>1.6.1</AssemblyVersion>
-    <FileVersion>1.6.1</FileVersion>
+    <Version>1.7.0</Version>
+    <AssemblyVersion>1.7.0</AssemblyVersion>
+    <FileVersion>1.7.0</FileVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>averrunci</Authors>
     <Description>The specification of the class library for Windows UI with Model View Controller.</Description>
-    <Copyright>Copyright (C) 2022-2024 Fievus</Copyright>
+    <Copyright>Copyright (C) 2022-2025 Fievus</Copyright>
     <PackageProjectUrl>https://github.com/averrunci/Charites.WinUI</PackageProjectUrl>
     <PackageTags>winui mvc charites</PackageTags>
   </PropertyGroup>

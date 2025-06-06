@@ -1,5 +1,23 @@
 # Release Note
 
+## v1.7.0
+
+### Add
+
+- Add the CoreWebView2NotificationWrapper class.
+- Add the following event args wrappers:
+  - CoreWebView2NotificationReceivedEventArgsWrapper.
+  - CoreWebView2SaveAsUIShowingEventArgsWrapper.
+  - CoreWebView2SaveFileSecurityCheckStartingEventArgs.
+  - CoreWebView2ScreenCaptureStartingEventArgsWrapper.
+
+### Changes
+
+- Change the target framework version to .NET 8.0.
+- Change Microsoft.WindowsAppSDK version to 1.7.250310001.
+- Change Charites version to 3.2.0.
+- Change Charites.Bindings version to 3.0.0.
+
 ## v1.6.1
 
 ### Bug fix
