@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2025 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -62,7 +62,7 @@ class WinUIControllerSpec_ExecuteHandler : FixtureSteppable
         var dependency1 = new TestWinUIControllers.Dependency1();
         var dependency2 = new TestWinUIControllers.Dependency2();
         var dependency3 = new TestWinUIControllers.Dependency3();
-        var testElement = await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() => new TestElement { Name = "testElement" });
+        var testElement = await CarnaWinUIRunner.InvokeAsync(() => new TestElement { Name = "testElement" });
         var dataContext = new TestDataContexts.TestDataContext();
         When("the KeyDown event is raised using the EventHandlerBase", () =>
             WinUIController.Using(Substitute.For<IKeyRoutedEventArgsResolver>(), typeof(KeyRoutedEventArgsWrapper))
@@ -102,7 +102,7 @@ class WinUIControllerSpec_ExecuteHandler : FixtureSteppable
         var dependency1 = new TestWinUIControllers.Dependency1();
         var dependency2 = new TestWinUIControllers.Dependency2();
         var dependency3 = new TestWinUIControllers.Dependency3();
-        var testElement = await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() => new TestElement { Name = "TestElement" });
+        var testElement = await CarnaWinUIRunner.InvokeAsync(() => new TestElement { Name = "TestElement" });
         var dataContext = new TestDataContexts.TestDataContext();
         When("the KeyDown event is raised asynchronously using the EventHandlerBase", async () =>
             await WinUIController.Using(Substitute.For<IKeyRoutedEventArgsResolver>(), typeof(KeyRoutedEventArgsWrapper))
@@ -144,7 +144,7 @@ class WinUIControllerSpec_ExecuteHandler : FixtureSteppable
         var dependency1 = new TestWinUIControllers.Dependency1();
         var dependency2 = new TestWinUIControllers.Dependency2();
         var dependency3 = new TestWinUIControllers.Dependency3();
-        var testElement = await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() => new TestElement { Name = "testElement" });
+        var testElement = await CarnaWinUIRunner.InvokeAsync(() => new TestElement { Name = "testElement" });
         var dataContext = new TestDataContexts.TestDataContext();
         When("the PointerPressed event is raised using the EventHandlerBase", () =>
             WinUIController.Using(Substitute.For<IPointerRoutedEventArgsResolver>(), typeof(PointerRoutedEventArgsWrapper))
@@ -188,7 +188,7 @@ class WinUIControllerSpec_ExecuteHandler : FixtureSteppable
         var dependency1 = new TestWinUIControllers.Dependency1();
         var dependency2 = new TestWinUIControllers.Dependency2();
         var dependency3 = new TestWinUIControllers.Dependency3();
-        var testElement = await CarnaWinUIRunner.Window.DispatcherQueue.RunAsync(() => new TestElement { Name = "TestElement" });
+        var testElement = await CarnaWinUIRunner.InvokeAsync(() => new TestElement { Name = "TestElement" });
         var dataContext = new TestDataContexts.TestDataContext();
         When("the PointerPressed event is raised asynchronously using the EventHandlerBase", async () =>
             await WinUIController.Using(Substitute.For<IPointerRoutedEventArgsResolver>(), typeof(PointerRoutedEventArgsWrapper))
