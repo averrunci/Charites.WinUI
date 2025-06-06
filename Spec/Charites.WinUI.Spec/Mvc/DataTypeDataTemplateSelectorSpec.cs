@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2025 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -11,11 +11,11 @@ namespace Charites.Windows.Mvc;
 [Specification("DataTypeDataTemplateSelector Spec")]
 class DataTypeDataTemplateSelectorSpec : DispatcherContext
 {
-    interface ITestData { }
-    class TestData : ITestData { }
-    class TestContainer : DependencyObject { }
-    class DerivedTestData : TestData { }
-    class GenericTestData<T> { }
+    interface ITestData;
+    class TestData : ITestData;
+    class TestContainer : DependencyObject;
+    class DerivedTestData : TestData;
+    class GenericTestData<T>;
 
     DataTemplate? ExpectedTemplate { get; set; }
     DataTemplate? ActualTemplate { get; set; }

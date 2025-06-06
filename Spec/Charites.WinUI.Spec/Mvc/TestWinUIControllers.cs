@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2025 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -80,48 +80,48 @@ internal class TestWinUIControllers
     }
 
     [View(Key = "Charites.Windows.Mvc.TestDataContexts+TestDataContext")]
-    public class TestWinUIController : TestWinUIControllerBase { }
+    public class TestWinUIController : TestWinUIControllerBase;
 
     [View(Key = "Charites.Windows.Mvc.TestDataContexts+MultiTestDataContext")]
-    public class MultiTestWinUIControllerA : TestWinUIControllerBase { }
+    public class MultiTestWinUIControllerA : TestWinUIControllerBase;
 
     [View(Key = "Charites.Windows.Mvc.TestDataContexts+MultiTestDataContext")]
-    public class MultiTestWinUIControllerB : TestWinUIControllerBase { }
+    public class MultiTestWinUIControllerB : TestWinUIControllerBase;
 
     [View(Key = "Charites.Windows.Mvc.TestDataContexts+MultiTestDataContext")]
-    public class MultiTestWinUIControllerC : TestWinUIControllerBase { }
+    public class MultiTestWinUIControllerC : TestWinUIControllerBase;
 
     public class TestController { [DataContext] public object? DataContext { get; set; } }
 
     [View(Key = "AttachingTestDataContext")]
-    public class TestDataContextController : TestController { }
+    public class TestDataContextController : TestController;
 
     [View(Key = "BaseAttachingTestDataContext")]
-    public class BaseTestDataContextController : TestController { }
+    public class BaseTestDataContextController : TestController;
 
     [View(Key = "Charites.Windows.Mvc.TestDataContexts+AttachingTestDataContextFullName")]
-    public class TestDataContextFullNameController : TestController { }
+    public class TestDataContextFullNameController : TestController;
 
     [View(Key = "Charites.Windows.Mvc.TestDataContexts+BaseAttachingTestDataContextFullName")]
-    public class BaseTestDataContextFullNameController : TestController { }
+    public class BaseTestDataContextFullNameController : TestController;
 
     [View(Key = "GenericAttachingTestDataContext`1")]
-    public class GenericTestDataContextController : TestController { }
+    public class GenericTestDataContextController : TestController;
 
     [View(Key = "Charites.Windows.Mvc.TestDataContexts+GenericAttachingTestDataContextFullName`1[System.String]")]
-    public class GenericTestDataContextFullNameController : TestController { }
+    public class GenericTestDataContextFullNameController : TestController;
 
     [View(Key = "Charites.Windows.Mvc.TestDataContexts+GenericAttachingTestDataContextFullName`1")]
-    public class GenericTestDataContextFullNameWithoutParametersController : TestController { }
+    public class GenericTestDataContextFullNameWithoutParametersController : TestController;
 
     [View(Key = "IAttachingTestDataContext")]
-    public class InterfaceImplementedTestDataContextController : TestController { }
+    public class InterfaceImplementedTestDataContextController : TestController;
 
     [View(Key = "Charites.Windows.Mvc.TestDataContexts+IAttachingTestDataContextFullName")]
-    public class InterfaceImplementedTestDataContextFullNameController : TestController { }
+    public class InterfaceImplementedTestDataContextFullNameController : TestController;
 
     [View(Key = "TestElement")]
-    public class KeyTestDataContextController : TestController { }
+    public class KeyTestDataContextController : TestController;
 
     public class TestWinUIControllerAsync
     {
@@ -252,12 +252,12 @@ internal class TestWinUIControllers
         public Action<IDependency1, IDependency2, IDependency3, TestElement, TestDataContexts.TestDataContext>? AttributedArgumentsHandler { get; set; }
     }
 
-    public interface IDependency1 { }
-    public interface IDependency2 { }
-    public interface IDependency3 { }
-    public class Dependency1 : IDependency1 { }
-    public class Dependency2 : IDependency2 { }
-    public class Dependency3 : IDependency3 { }
+    public interface IDependency1;
+    public interface IDependency2;
+    public interface IDependency3;
+    public class Dependency1 : IDependency1;
+    public class Dependency2 : IDependency2;
+    public class Dependency3 : IDependency3;
 
     public class AttributedToField
     {
