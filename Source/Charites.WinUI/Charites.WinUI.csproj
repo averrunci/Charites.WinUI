@@ -4,11 +4,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-    <WindowsSdkPackageVersion>10.0.19041.55</WindowsSdkPackageVersion>
+    <WindowsSdkPackageVersion>10.0.19041.56</WindowsSdkPackageVersion>
     <RootNamespace>Charites.Windows</RootNamespace>
-    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
     <BaseOutputPath>..\..\Binary\</BaseOutputPath>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <UseWinUI>true</UseWinUI>
@@ -29,11 +29,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250310001" />
-    <PackageReference Include="Charites" Version="2.2.0" />
-    <PackageReference Include="Charites.Bindings" Version="2.2.0" />
+    <PackageReference Include="Charites" Version="3.2.0" />
+    <PackageReference Include="Charites.Bindings" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\Binary\Release\net6.0-windows10.0.19041.0\Charites.WinUI\runtimes\**" Pack="true" PackagePath="lib\net6.0-windows10.0.19041\Charites.WinUI\runtimes\"/>
+    <None Include="..\..\Binary\Release\net8.0-windows10.0.19041.0\Charites.WinUI\runtimes\**" Pack="true" PackagePath="lib\net8.0-windows10.0.19041\Charites.WinUI\runtimes\"/>
   </ItemGroup>
 </Project>
