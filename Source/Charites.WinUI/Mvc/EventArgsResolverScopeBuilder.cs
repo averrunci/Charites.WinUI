@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2025 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -26,7 +26,7 @@ public sealed class EventArgsResolverScopeBuilder<T>
     /// <param name="resolver">The resolver to resolve the event data.</param>
     /// <param name="eventArgsWrapperType">The type of the event args wrapper.</param>
     /// <param name="resolverPropertyName">The name of the Resolver property of the event args wrapper.</param>
-    public EventArgsResolverScopeBuilder(T resolver, Type eventArgsWrapperType, string resolverPropertyName) : this(resolver, eventArgsWrapperType, resolverPropertyName, Enumerable.Empty<IEventArgsResolver>())
+    public EventArgsResolverScopeBuilder(T resolver, Type eventArgsWrapperType, string resolverPropertyName) : this(resolver, eventArgsWrapperType, resolverPropertyName, [])
     {
     }
 

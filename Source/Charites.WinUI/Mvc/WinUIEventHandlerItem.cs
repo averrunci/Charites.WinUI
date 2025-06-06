@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2025 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -63,7 +63,7 @@ public sealed class WinUIEventHandlerItem : EventHandlerItem<FrameworkElement>
         }
         else
         {
-            eventInfo?.AddMethod?.Invoke(element, new object[] { handler });
+            eventInfo?.AddMethod?.Invoke(element, [handler]);
         }
 
         isEventHandlerAdded = true;
@@ -84,7 +84,7 @@ public sealed class WinUIEventHandlerItem : EventHandlerItem<FrameworkElement>
         }
         else
         {
-            eventInfo?.RemoveMethod?.Invoke(element, new object[] { handler });
+            eventInfo?.RemoveMethod?.Invoke(element, [handler]);
         }
 
         isEventHandlerAdded = false;

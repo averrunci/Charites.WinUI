@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2025 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -155,16 +155,16 @@ class WinUIControllerSpec_AttachingAndDetachingController : DispatcherContext
             When("the WinUIController is enabled for the element", () =>
             {
                 WinUIController.SetIsEnabled(Element, true);
-                Controllers = new TestWinUIControllers.TestWinUIControllerBase[]
-                {
+                Controllers =
+                [
                     Element.GetController<TestWinUIControllers.MultiTestWinUIControllerA>(),
                     Element.GetController<TestWinUIControllers.MultiTestWinUIControllerB>(),
                     Element.GetController<TestWinUIControllers.MultiTestWinUIControllerC>()
-                };
-                DataContextChangedEventsHandled = new[] { false, false, false };
-                LoadingEventsHandled = new[] { false, false, false };
-                LoadedEventsHandled = new[] { false, false, false };
-                ChangedEventsHandled = new[] { false, false, false };
+                ];
+                DataContextChangedEventsHandled = [false, false, false];
+                LoadingEventsHandled = [false, false, false];
+                LoadedEventsHandled = [false, false, false];
+                ChangedEventsHandled = [false, false, false];
                 for (var index = 0; index < Controllers.Length; ++index)
                 {
                     var eventHandledIndex = index;
