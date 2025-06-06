@@ -1,5 +1,11 @@
 # Release Note
 
+## v1.7.1
+
+### Bug fix
+
+- Fix an issue that WebView2Loader.dll is not found.
+
 ## v1.7.0
 
 ### Add

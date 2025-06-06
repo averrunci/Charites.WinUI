@@ -9,7 +9,7 @@
   <Identity
     Name="Charites.WinUI.Spec"
     Publisher="CN=Fievus"
-    Version="1.7.0.0" />
+    Version="1.7.1.0" />
 
   <Properties>
     <DisplayName>Charites.WinUI.Spec</DisplayName>

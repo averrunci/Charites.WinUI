@@ -27,7 +27,7 @@
       <CustomParameter Name="$WindowsAppSDKNupkgVersion$" Value="1.7.250513003" />
       <CustomParameter Name="$WindowsSDKBuildToolsNupkgVersion$" Value="10.0.26100.4188" />
       <CustomParameter Name="$DotNetVersion$" Value="net8.0" />
-      <CustomParameter Name="$CharitesWinUINupkgVersion$" Value="1.7.0"/>
+      <CustomParameter Name="$CharitesWinUINupkgVersion$" Value="1.7.1"/>
     </CustomParameters>
     <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">Properties\launchSettings.json</ProjectItem>
