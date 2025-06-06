@@ -261,7 +261,7 @@ internal class TestWinUIControllers
 
     public class AttributedToField
     {
-        public class NoArgumentHandlerController : ITestWinUIController
+        public class NoArgumentHandlerController(Action assertionHandler) : ITestWinUIController
         {
             [DataContext]
             private object? dataContext;
@@ -273,27 +273,20 @@ internal class TestWinUIControllers
             private FrameworkElement? childElement;
 
             [EventHandler(ElementName = "childElement", Event = nameof(FrameworkElement.Loaded))]
-            private Action loadedHandler;
+            private Action loadedHandler = assertionHandler;
 
             [EventHandler(ElementName = "childElement", Event = nameof(TestElement.Changed))]
-            private Action changedHandler;
+            private Action changedHandler = assertionHandler;
 
             [EventHandler(ElementName = "childElement", Event = nameof(FrameworkElement.DataContextChanged))]
-            private Action dataContextChangedHandler;
-
-            public NoArgumentHandlerController(Action assertionHandler)
-            {
-                loadedHandler = assertionHandler;
-                changedHandler = assertionHandler;
-                dataContextChangedHandler = assertionHandler;
-            }
+            private Action dataContextChangedHandler = assertionHandler;
 
             public object? DataContext => dataContext;
             public FrameworkElement? Element => element;
             public FrameworkElement? ChildElement => childElement;
         }
 
-        public class OneArgumentHandlerController : ITestWinUIController
+        public class OneArgumentHandlerController(Action<object> assertionHandler) : ITestWinUIController
         {
             [DataContext]
             private object? dataContext;
@@ -305,20 +298,13 @@ internal class TestWinUIControllers
             private FrameworkElement? childElement;
 
             [EventHandler(ElementName = "childElement", Event = nameof(FrameworkElement.Loaded))]
-            private Action<RoutedEventArgs> loadedHandler;
+            private Action<RoutedEventArgs> loadedHandler = assertionHandler;
 
             [EventHandler(ElementName = "childElement", Event = nameof(TestElement.Changed))]
-            private Action<RoutedEventArgs> changedHandler;
+            private Action<RoutedEventArgs> changedHandler = assertionHandler;
 
             [EventHandler(ElementName = "childElement", Event = nameof(FrameworkElement.DataContextChanged))]
-            private Action<DataContextChangedEventArgs> dataContextChangedHandler;
-
-            public OneArgumentHandlerController(Action<object> assertionHandler)
-            {
-                loadedHandler = assertionHandler;
-                changedHandler = assertionHandler;
-                dataContextChangedHandler = assertionHandler;
-            }
+            private Action<DataContextChangedEventArgs> dataContextChangedHandler = assertionHandler;
 
             public object? DataContext => dataContext;
             public FrameworkElement? Element => element;
@@ -360,7 +346,7 @@ internal class TestWinUIControllers
 
     public class AttributedToProperty
     {
-        public class NoArgumentHandlerController : ITestWinUIController
+        public class NoArgumentHandlerController(Action assertionHandler) : ITestWinUIController
         {
             [DataContext]
             public object? DataContext { get; private set; }
@@ -372,23 +358,16 @@ internal class TestWinUIControllers
             public FrameworkElement? ChildElement { get; private set; }
 
             [EventHandler(ElementName = "childElement", Event = nameof(FrameworkElement.Loaded))]
-            private Action LoadedHandler { get; set; }
+            private Action LoadedHandler { get; set; } = assertionHandler;
 
             [EventHandler(ElementName = "childElement", Event = nameof(TestElement.Changed))]
-            private Action ChangedHandler { get; set; }
+            private Action ChangedHandler { get; set; } = assertionHandler;
 
             [EventHandler(ElementName = "childElement", Event = nameof(FrameworkElement.DataContextChanged))]
-            private Action DataContextChangedHandler { get; set; }
-
-            public NoArgumentHandlerController(Action assertionHandler)
-            {
-                LoadedHandler = assertionHandler;
-                ChangedHandler = assertionHandler;
-                DataContextChangedHandler = assertionHandler;
-            }
+            private Action DataContextChangedHandler { get; set; } = assertionHandler;
         }
 
-        public class OneArgumentHandlerController : ITestWinUIController
+        public class OneArgumentHandlerController(Action<object> assertionHandler) : ITestWinUIController
         {
             [DataContext]
             public object? DataContext { get; private set; }
@@ -400,20 +379,13 @@ internal class TestWinUIControllers
             public FrameworkElement? ChildElement { get; private set; }
 
             [EventHandler(ElementName = "childElement", Event = nameof(FrameworkElement.Loaded))]
-            private Action<RoutedEventArgs> LoadedHandler { get; set; }
+            private Action<RoutedEventArgs> LoadedHandler { get; set; } = assertionHandler;
 
             [EventHandler(ElementName = "childElement", Event = nameof(TestElement.Changed))]
-            private Action<RoutedEventArgs> ChangedHandler { get; set; }
+            private Action<RoutedEventArgs> ChangedHandler { get; set; } = assertionHandler;
 
             [EventHandler(ElementName = "childElement", Event = nameof(FrameworkElement.DataContextChanged))]
-            private Action<DataContextChangedEventArgs> DataContextChangedHandler { get; set; }
-
-            public OneArgumentHandlerController(Action<object> assertionHandler)
-            {
-                LoadedHandler = assertionHandler;
-                ChangedHandler = assertionHandler;
-                DataContextChangedHandler = assertionHandler;
-            }
+            private Action<DataContextChangedEventArgs> DataContextChangedHandler { get; set; } = assertionHandler;
         }
 
         public class TwoArgumentsEventHandlerController : ITestWinUIController
@@ -447,7 +419,7 @@ internal class TestWinUIControllers
 
     public class AttributedToMethod
     {
-        public class NoArgumentHandlerController : ITestWinUIController
+        public class NoArgumentHandlerController(Action assertionHandler) : ITestWinUIController
         {
             [DataContext]
             public void SetDataContext(object? dataContext) => DataContext = dataContext;
@@ -466,31 +438,24 @@ internal class TestWinUIControllers
             {
                 loadedHandler();
             }
-            private readonly Action loadedHandler;
+            private readonly Action loadedHandler = assertionHandler;
 
             [EventHandler(ElementName = "childElement", Event = nameof(TestElement.Changed))]
             public void OnChildElementChanged()
             {
                 changedHandler();
             }
-            private readonly Action changedHandler;
+            private readonly Action changedHandler = assertionHandler;
 
             [EventHandler(ElementName = "childElement", Event = nameof(FrameworkElement.DataContextChanged))]
             public void OnChildElementDataContextChanged()
             {
                 dataContextChangedHandler();
             }
-            private readonly Action dataContextChangedHandler;
-
-            public NoArgumentHandlerController(Action assertionHandler)
-            {
-                loadedHandler = assertionHandler;
-                changedHandler = assertionHandler;
-                dataContextChangedHandler = assertionHandler;
-            }
+            private readonly Action dataContextChangedHandler = assertionHandler;
         }
 
-        public class OneArgumentHandlerController : ITestWinUIController
+        public class OneArgumentHandlerController(Action<object> assertionHandler) : ITestWinUIController
         {
             [DataContext]
             public void SetDataContext(object? dataContext) => DataContext = dataContext;
@@ -509,28 +474,21 @@ internal class TestWinUIControllers
             {
                 loadedHandler(e);
             }
-            private readonly Action<RoutedEventArgs> loadedHandler;
+            private readonly Action<RoutedEventArgs> loadedHandler = assertionHandler;
 
             [EventHandler(ElementName = "childElement", Event = nameof(TestElement.Changed))]
             public void OnChildElementChanged(RoutedEventArgs e)
             {
                 changedHandler(e);
             }
-            private readonly Action<RoutedEventArgs> changedHandler;
+            private readonly Action<RoutedEventArgs> changedHandler = assertionHandler;
 
             [EventHandler(ElementName = "childElement", Event = nameof(FrameworkElement.DataContextChanged))]
             public void OnChildElementDataContextChanged(DataContextChangedEventArgs e)
             {
                 dataContextChangedHandler(e);
             }
-            private readonly Action<DataContextChangedEventArgs> dataContextChangedHandler;
-
-            public OneArgumentHandlerController(Action<object> assertionHandler)
-            {
-                loadedHandler = assertionHandler;
-                changedHandler = assertionHandler;
-                dataContextChangedHandler = assertionHandler;
-            }
+            private readonly Action<DataContextChangedEventArgs> dataContextChangedHandler = assertionHandler;
         }
 
         public class TwoArgumentsEventHandlerController : ITestWinUIController
@@ -579,7 +537,7 @@ internal class TestWinUIControllers
 
     public class AttributedToMethodUsingNamingConvention
     {
-        public class NoArgumentHandlerController : ITestWinUIController
+        public class NoArgumentHandlerController(Action assertionHandler) : ITestWinUIController
         {
             public void SetDataContext(object? dataContext) => DataContext = dataContext;
             public object? DataContext { get; private set; }
@@ -596,29 +554,22 @@ internal class TestWinUIControllers
             {
                 loadedHandler();
             }
-            private readonly Action loadedHandler;
+            private readonly Action loadedHandler = assertionHandler;
 
             public void childElement_Changed()
             {
                 changedHandler();
             }
-            private readonly Action changedHandler;
+            private readonly Action changedHandler = assertionHandler;
 
             public void childElement_DataContextChanged()
             {
                 dataContextChangedHandler();
             }
-            private readonly Action dataContextChangedHandler;
-
-            public NoArgumentHandlerController(Action assertionHandler)
-            {
-                loadedHandler = assertionHandler;
-                changedHandler = assertionHandler;
-                dataContextChangedHandler = assertionHandler;
-            }
+            private readonly Action dataContextChangedHandler = assertionHandler;
         }
 
-        public class OneArgumentHandlerController : ITestWinUIController
+        public class OneArgumentHandlerController(Action<object> assertionHandler) : ITestWinUIController
         {
             public void SetDataContext(object? dataContext) => DataContext = dataContext;
             public object? DataContext { get; private set; }
@@ -635,26 +586,19 @@ internal class TestWinUIControllers
             {
                 loadedHandler(e);
             }
-            private readonly Action<RoutedEventArgs> loadedHandler;
+            private readonly Action<RoutedEventArgs> loadedHandler = assertionHandler;
 
             public void childElement_Changed(RoutedEventArgs e)
             {
                 changedHandler(e);
             }
-            private readonly Action<RoutedEventArgs> changedHandler;
+            private readonly Action<RoutedEventArgs> changedHandler = assertionHandler;
 
             public void childElement_DataContextChanged(DataContextChangedEventArgs e)
             {
                 dataContextChangedHandler(e);
             }
-            private readonly Action<DataContextChangedEventArgs> dataContextChangedHandler;
-
-            public OneArgumentHandlerController(Action<object> assertionHandler)
-            {
-                loadedHandler = assertionHandler;
-                changedHandler = assertionHandler;
-                dataContextChangedHandler = assertionHandler;
-            }
+            private readonly Action<DataContextChangedEventArgs> dataContextChangedHandler = assertionHandler;
         }
 
         public class TwoArgumentsEventHandlerController : ITestWinUIController
@@ -699,7 +643,7 @@ internal class TestWinUIControllers
 
     public class AttributedToAsyncMethodUsingNamingConvention
     {
-        public class NoArgumentHandlerController : ITestWinUIController
+        public class NoArgumentHandlerController(Action assertionHandler) : ITestWinUIController
         {
             public void SetDataContext(object? dataContext) => DataContext = dataContext;
             public object? DataContext { get; private set; }
@@ -717,31 +661,24 @@ internal class TestWinUIControllers
                 loadedHandler();
                 return Task.CompletedTask;
             }
-            private readonly Action loadedHandler;
+            private readonly Action loadedHandler = assertionHandler;
 
             public Task childElement_ChangedAsync()
             {
                 changedHandler();
                 return Task.CompletedTask;
             }
-            private readonly Action changedHandler;
+            private readonly Action changedHandler = assertionHandler;
 
             public Task childElement_DataContextChangedAsync()
             {
                 dataContextChangedHandler();
                 return Task.CompletedTask;
             }
-            private readonly Action dataContextChangedHandler;
-
-            public NoArgumentHandlerController(Action assertionHandler)
-            {
-                loadedHandler = assertionHandler;
-                changedHandler = assertionHandler;
-                dataContextChangedHandler = assertionHandler;
-            }
+            private readonly Action dataContextChangedHandler = assertionHandler;
         }
 
-        public class OneArgumentHandlerController : ITestWinUIController
+        public class OneArgumentHandlerController(Action<object> assertionHandler) : ITestWinUIController
         {
             public void SetDataContext(object? dataContext) => DataContext = dataContext;
             public object? DataContext { get; private set; }
@@ -759,28 +696,21 @@ internal class TestWinUIControllers
                 loadedHandler(e);
                 return Task.CompletedTask;
             }
-            private readonly Action<RoutedEventArgs> loadedHandler;
+            private readonly Action<RoutedEventArgs> loadedHandler = assertionHandler;
 
             public Task childElement_ChangedAsync(RoutedEventArgs e)
             {
                 changedHandler(e);
                 return Task.CompletedTask;
             }
-            private readonly Action<RoutedEventArgs> changedHandler;
+            private readonly Action<RoutedEventArgs> changedHandler = assertionHandler;
 
             public Task childElement_DataContextChangedAsync(DataContextChangedEventArgs e)
             {
                 dataContextChangedHandler(e);
                 return Task.CompletedTask;
             }
-            private readonly Action<DataContextChangedEventArgs> dataContextChangedHandler;
-
-            public OneArgumentHandlerController(Action<object> assertionHandler)
-            {
-                loadedHandler = assertionHandler;
-                changedHandler = assertionHandler;
-                dataContextChangedHandler = assertionHandler;
-            }
+            private readonly Action<DataContextChangedEventArgs> dataContextChangedHandler = assertionHandler;
         }
 
         public class TwoArgumentsEventHandlerController : ITestWinUIController

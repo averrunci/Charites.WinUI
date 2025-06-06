@@ -7,13 +7,12 @@ using Microsoft.UI.Xaml;
 
 namespace Charites.Windows.Mvc;
 
-internal sealed class WinUIControllerTypeFinder : ControllerTypeFinder<FrameworkElement>, IWinUIControllerTypeFinder
+internal sealed class WinUIControllerTypeFinder(
+    IWinUIElementKeyFinder elementKeyFinder,
+    IWinUIDataContextFinder dataContextFinder
+) : ControllerTypeFinder<FrameworkElement>(elementKeyFinder, dataContextFinder), IWinUIControllerTypeFinder
 {
     public IWinUIControllerTypeContainer? ControllerTypeContainer { get; set; }
-
-    public WinUIControllerTypeFinder(IWinUIElementKeyFinder elementKeyFinder, IWinUIDataContextFinder dataContextFinder) : base(elementKeyFinder, dataContextFinder)
-    {
-    }
 
     protected override IEnumerable<Type> FindControllerTypeCandidates(FrameworkElement view)
         => GetControllerTypes()

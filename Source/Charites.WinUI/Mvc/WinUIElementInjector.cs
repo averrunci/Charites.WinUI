@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2022 Fievus
+﻿// Copyright (C) 2022-2025 Fievus
 //
 // This software may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
@@ -6,9 +6,4 @@ using Microsoft.UI.Xaml;
 
 namespace Charites.Windows.Mvc;
 
-internal sealed class WinUIElementInjector : ElementInjector<FrameworkElement>, IWinUIElementInjector
-{
-    public WinUIElementInjector(IElementFinder<FrameworkElement> elementFinder) : base(elementFinder)
-    {
-    }
-}
+internal sealed class WinUIElementInjector(IElementFinder<FrameworkElement> elementFinder) : ElementInjector<FrameworkElement>(elementFinder), IWinUIElementInjector;
