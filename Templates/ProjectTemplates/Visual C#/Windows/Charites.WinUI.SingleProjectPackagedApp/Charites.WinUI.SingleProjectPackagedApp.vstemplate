@@ -24,16 +24,16 @@
   </TemplateData>
   <TemplateContent PreferedSolutionConfiguration="Debug|x64">
     <CustomParameters>
-      <CustomParameter Name="$WindowsAppSDKNupkgVersion$" Value="1.6.240829007" />
-      <CustomParameter Name="$WindowsSDKBuildToolsNupkgVersion$" Value="10.0.26100.1" />
-      <CustomParameter Name="$DotNetVersion$" Value="net6.0" />
-      <CustomParameter Name="$CharitesWinUINupkgVersion$" Value="1.6.0"/>
+      <CustomParameter Name="$WindowsAppSDKNupkgVersion$" Value="1.7.250513003" />
+      <CustomParameter Name="$WindowsSDKBuildToolsNupkgVersion$" Value="10.0.26100.4188" />
+      <CustomParameter Name="$DotNetVersion$" Value="net8.0" />
+      <CustomParameter Name="$CharitesWinUINupkgVersion$" Value="1.7.0"/>
     </CustomParameters>
     <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">Properties\launchSettings.json</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="win10-arm64.pubxml">Properties\PublishProfiles\win10-arm64.pubxml</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="win10-x64.pubxml">Properties\PublishProfiles\win10-x64.pubxml</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="win10-x86.pubxml">Properties\PublishProfiles\win10-x86.pubxml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="win-arm64.pubxml">Properties\PublishProfiles\win-arm64.pubxml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="win-x64.pubxml">Properties\PublishProfiles\win-x64.pubxml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="win-x86.pubxml">Properties\PublishProfiles\win-x86.pubxml</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="app.manifest">app.manifest</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="App.xaml">App.xaml</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="App.xaml.cs">App.xaml.cs</ProjectItem>
