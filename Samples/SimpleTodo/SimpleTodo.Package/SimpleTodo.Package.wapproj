@@ -36,13 +36,13 @@
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
   <PropertyGroup>
     <ProjectGuid>6a3ad0cd-e921-464f-8c3b-b78c1dc88865</ProjectGuid>
-    <TargetPlatformVersion>10.0.20348.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.26100.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.22000.0</TargetPlatformMinVersion>
     <AssetTargetFallback>net8.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\SimpleTodo\SimpleTodo.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>C3DB5BB1843C30F0020FEFC3CCF5223FBB2A5245</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>533E12965A5D5B934620E173B5C517FA9FC92C4E</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>SimpleTodo.Package_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
@@ -67,10 +67,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250513003">
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.250907003">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188">
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.6584">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>

@@ -36,13 +36,13 @@
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
   <PropertyGroup>
     <ProjectGuid>d9901a63-db49-433b-8cdb-ce7ce325b6d9</ProjectGuid>
-    <TargetPlatformVersion>10.0.20348.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.26100.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.22000.0</TargetPlatformMinVersion>
     <AssetTargetFallback>net8.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\SimpleLoginDemo\SimpleLoginDemo.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>CB147546B80276653D2ADD1A6A1575806EC66406</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>E0FCF9E44D987E39ABEC4E7AD6385023C8097B0D</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>SimpleLoginDemo.Package_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
@@ -67,10 +67,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250513003">
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.250907003">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188">
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.6584">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>

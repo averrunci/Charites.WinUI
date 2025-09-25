@@ -9,7 +9,7 @@
   <Identity
     Name="Charites.Samples.SimpleTodo.SpecRunner"
     Publisher="CN=Fievus"
-    Version="1.7.0.0" />
+    Version="1.8.0.0" />
 
   <Properties>
     <DisplayName>SimpleTodo.SpecRunner</DisplayName>
