@@ -1,5 +1,11 @@
 # Release Note
 
+## v1.8.0
+
+### Changes
+
+- Change Microsoft.WindowsAppSDK version to 1.8.250907003.
+
 ## v1.7.1
 
 ### Bug fix

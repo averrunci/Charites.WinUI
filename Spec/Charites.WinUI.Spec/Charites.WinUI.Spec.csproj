@@ -17,12 +17,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
-    <PackageCertificateThumbprint>ADB6B674C953474C91E33DFDE34328B084696CAF</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>14EEFA45B3E8DD8033A431EFBB9D3009C97A78A4</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>Charites.WinUI.Spec_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <Version>1.7.1</Version>
-    <AssemblyVersion>1.7.1</AssemblyVersion>
-    <FileVersion>1.7.1</FileVersion>
+    <Version>1.8.0</Version>
+    <AssemblyVersion>1.8.0</AssemblyVersion>
+    <FileVersion>1.8.0</FileVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>averrunci</Authors>
